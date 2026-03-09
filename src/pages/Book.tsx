@@ -56,8 +56,9 @@ const Book = () => {
           <Rooms />
         </div>
       ) : (
-        <div className="h-screen overflow-hidden flex items-center justify-center p-4">
+        <div className="min-h-screen flex items-start justify-center p-4 pt-12">
           <div className="w-full max-w-7xl">
+
         {/* Header */}
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
@@ -117,7 +118,7 @@ const Book = () => {
                   right: "-20px",
                   width: "220px",
                   height: "180px",
-                  borderRadius: "0"
+                  borderRadius: "8px"
                 }}
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
@@ -170,7 +171,31 @@ const Book = () => {
           ))}
         </div>
 
-              </div>
+        {/* Video Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mt-12 flex justify-center"
+        >
+          <div className="w-full max-w-4xl">
+            <div className="relative rounded-lg overflow-hidden shadow-xl">
+              <iframe 
+                width="100%" 
+                height="453" 
+                src="https://www.youtube.com/embed/flC9vf0vaKg?start=22&autoplay=1&mute=1" 
+                title="AFRICA FOOTPRINTS LODGE" 
+                frameBorder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerPolicy="strict-origin-when-cross-origin" 
+                allowFullScreen
+                className="w-full"
+              />
+            </div>
+          </div>
+        </motion.div>
+
+        </div>
     </div>
       )}
     </div>
