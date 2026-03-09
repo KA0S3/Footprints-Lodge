@@ -21,6 +21,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  
+  // Pages where the Book Now button should be hidden
+  const hideBookButton = ['/book', '/rooms', '/studio', '/suite'].includes(location.pathname);
   useEffect(() => {
     const handleScroll = () => {
       const offset = window.scrollY;
@@ -51,47 +54,11 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             Footprints
           </Link>
 
-          <nav className="hidden md:flex items-center gap-1">
-            {mainLinks.map((link) => (
-              <motion.div
-                key={link.to}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Link
-                  to={link.to}
-                  className={`px-3 py-2 text-sm font-medium rounded-md transition-all duration-200 ${
-                    isActive(link.to) 
-                      ? "text-primary bg-primary/10 shadow-sm" 
-                      : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              </motion.div>
-            ))}
-
-            {/* More button */}
-            <motion.div 
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Link
-                to="/more"
-                className={`flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md transition-all duration-200 ${
-                  isActive("/more")
-                    ? "text-primary bg-primary/10 shadow-sm"
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                }`}
-              >
-                More
-              </Link>
-            </motion.div>
-          </nav>
-
           <motion.div className="hidden md:flex items-center" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Button variant="hero" size="sm" asChild className="shadow-lg hover:shadow-xl transition-all duration-200">
-              <Link to="/book">Book Now</Link>
+              <Link to={hideBookButton ? "/more" : "/book"}>
+                {hideBookButton ? "More" : "Book Now"}
+              </Link>
             </Button>
           </motion.div>
 
@@ -115,21 +82,11 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               className="md:hidden border-t bg-card overflow-hidden"
             >
               <nav className="container flex flex-col gap-1 py-3">
-                {allLinks.map((link) => (
-                  <Link
-                    key={link.to}
-                    to={link.to}
-                    onClick={() => setMobileOpen(false)}
-                    className={`px-3 py-2 text-sm font-medium rounded-md transition-colors ${
-                      isActive(link.to) ? "text-primary bg-primary/5" : "text-muted-foreground hover:text-foreground"
-                    }`}
-                  >
-                    {link.label}
-                  </Link>
-                ))}
                 <div className="px-3 pt-2">
                   <Button variant="hero" size="sm" className="w-full" asChild>
-                    <Link to="/book" onClick={() => setMobileOpen(false)}>Book Now</Link>
+                    <Link to={hideBookButton ? "/more" : "/book"} onClick={() => setMobileOpen(false)}>
+                      {hideBookButton ? "More" : "Book Now"}
+                    </Link>
                   </Button>
                 </div>
               </nav>

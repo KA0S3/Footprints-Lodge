@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { MapPin, HelpCircle, MessageSquare, Info, BookOpen } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const More = () => {
   const containerVariants = {
@@ -54,20 +55,11 @@ const More = () => {
             Footprints
           </Link>
 
-          <nav className="hidden md:flex items-center gap-1">
-            <Link
-              to="/book"
-              className="px-3 py-2 text-sm font-medium rounded-md transition-all duration-200 text-muted-foreground hover:text-foreground hover:border-yellow-600"
-            >
-              Book
-            </Link>
-            <Link
-              to="/more"
-              className="px-3 py-2 text-sm font-medium rounded-md transition-all duration-200 text-primary bg-primary/10 shadow-sm"
-            >
-              More
-            </Link>
-          </nav>
+          <motion.div className="hidden md:flex items-center" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <Button variant="hero" size="sm" asChild className="shadow-lg hover:shadow-xl transition-all duration-200">
+              <Link to="/book">Book Now</Link>
+            </Button>
+          </motion.div>
         </div>
       </motion.header>
 
