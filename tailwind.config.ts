@@ -53,7 +53,7 @@ export default {
         },
         charcoal: "hsl(var(--charcoal))",
         steel: "hsl(var(--steel))",
-        coral: "hsl(var(--coral))",
+        gold: "hsl(var(--gold))",
         offwhite: "hsl(var(--offwhite))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",

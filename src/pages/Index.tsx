@@ -47,7 +47,7 @@ const Index = () => {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.5 }}
             >
-              Minimalist perfection for your short & safe business stay
+              Modern, clean, safe stays with a touch of africa
             </motion.p>
             
             <motion.p 
@@ -68,21 +68,20 @@ const Index = () => {
             className="flex flex-col sm:flex-row gap-4 items-center"
           >
             <Button 
-              variant="hero" 
+              variant="gloss" 
               size="lg" 
               asChild
-              className="bg-white text-black hover:bg-white/90 shadow-xl hover:shadow-2xl transition-all duration-300 px-8 py-4 text-lg"
+              className="px-8 py-4 text-lg shadow-2xl hover:shadow-3xl"
             >
               <Link to="/book">Book a Room</Link>
             </Button>
-            
             <Button 
-              variant="heroOutline" 
+              variant="outline" 
               size="lg" 
               asChild
-              className="border-white text-white hover:bg-white/10 px-8 py-4 text-lg"
+              className="px-8 py-4 text-lg border-white text-white bg-transparent hover:bg-white/10 backdrop-blur-sm transition-all duration-300"
             >
-              <Link to="/rooms">More Information</Link>
+              <Link to="/more">More</Link>
             </Button>
           </motion.div>
 

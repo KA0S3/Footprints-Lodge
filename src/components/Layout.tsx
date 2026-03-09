@@ -1,11 +1,10 @@
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown } from "lucide-react";
-import { useState, useRef, useEffect } from "react";
+import { Menu, X } from "lucide-react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 
 const mainLinks = [
-  { to: "/rooms", label: "Rooms" },
   { to: "/book", label: "Book" },
 ];
 
@@ -21,20 +20,7 @@ const allLinks = [{ to: "/", label: "Home" }, ...mainLinks, ...moreLinks];
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [moreOpen, setMoreOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const moreRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handler = (e: MouseEvent) => {
-      if (moreRef.current && !moreRef.current.contains(e.target as Node)) {
-        setMoreOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
-  }, []);
-
   useEffect(() => {
     const handleScroll = () => {
       const offset = window.scrollY;
@@ -85,57 +71,21 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               </motion.div>
             ))}
 
-            {/* More dropdown */}
+            {/* More button */}
             <motion.div 
-              ref={moreRef} 
-              className="relative"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <button
-                onClick={() => setMoreOpen(!moreOpen)}
-                onMouseEnter={() => setMoreOpen(true)}
+              <Link
+                to="/more"
                 className={`flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md transition-all duration-200 ${
-                  moreLinks.some((l) => isActive(l.to)) || isActive("/more")
+                  isActive("/more")
                     ? "text-primary bg-primary/10 shadow-sm"
                     : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
                 }`}
               >
-                <Link to="/more" onClick={(e) => { if (moreOpen) e.preventDefault(); }}>More</Link> 
-                <motion.div
-                  animate={{ rotate: moreOpen ? 180 : 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <ChevronDown size={14} />
-                </motion.div>
-              </button>
-              <AnimatePresence>
-                {moreOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 4 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 4 }}
-                    transition={{ duration: 0.15 }}
-                    onMouseLeave={() => setMoreOpen(false)}
-                    className="absolute top-full right-0 mt-1 w-44 bg-card border rounded-lg shadow-lg py-1 z-50"
-                  >
-                    {moreLinks.map((link) => (
-                      <Link
-                        key={link.to}
-                        to={link.to}
-                        onClick={() => setMoreOpen(false)}
-                        className={`block px-4 py-2 text-sm transition-colors ${
-                          isActive(link.to)
-                            ? "text-primary bg-primary/5"
-                            : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                        }`}
-                      >
-                        {link.label}
-                      </Link>
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
+                More
+              </Link>
             </motion.div>
           </nav>
 
@@ -191,7 +141,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       <main className="flex-1">{children}</main>
 
       {/* Compact footer */}
-      <footer className="bg-foreground text-background">
+      <footer className="bg-foreground text-background mt-[5px]">
         <div className="container py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-3">
             <span className="font-display text-sm">Footprints Lodge</span>
