@@ -83,7 +83,21 @@ const Book = () => {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               whileHover={{ scale: 1.02 }}
               className="relative w-80 h-96 cursor-pointer"
-              onClick={() => setSelectedRoom(room.id)}
+              onClick={() => {
+                if (selectedRoom === room.id) {
+                  // If already selected, navigate to the corresponding page
+                  if (room.id === "transit") {
+                    setShowRoomsDetails(true);
+                  } else if (room.id === "studio") {
+                    navigate("/studio");
+                  } else if (room.id === "suite") {
+                    navigate("/suite");
+                  }
+                } else {
+                  // If not selected, just select it
+                  setSelectedRoom(room.id);
+                }
+              }}
             >
               {/* Botanical Background Image */}
               <div className="absolute inset-0 rounded-2xl overflow-hidden shadow-xl">
@@ -156,27 +170,7 @@ const Book = () => {
           ))}
         </div>
 
-        {/* Continue Button */}
-        {selectedRoom && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3 }}
-            className="text-center mt-12"
-          >
-            <Button 
-              size="lg" 
-              className="px-8 py-3 text-lg"
-              onClick={() => {
-                navigate(`/book-form?room=${selectedRoom}`);
-              }}
-            >
-              Continue to Booking
-              <ArrowRight size={20} className="ml-2" />
-            </Button>
-          </motion.div>
-        )}
-      </div>
+              </div>
     </div>
       )}
     </div>
