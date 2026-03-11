@@ -3,9 +3,9 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { ArrowRight, Users, Bed, Home, ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import room1Image from "@/assets/room-1.jpg";
-import room2Image from "@/assets/room-2.jpg";
-import heroRoomImage from "@/assets/hero-room.jpg";
+import room1Image from "@/assets/image (2).jpeg";
+import room2Image from "@/assets/image (3).jpeg";
+import heroRoomImage from "@/assets/image (1).jpeg";
 import Rooms from "./Rooms";
 
 const Book = () => {
@@ -17,22 +17,22 @@ const Book = () => {
     {
       id: "transit",
       title: "The Transit",
-      description: "Optimized for 1–3 day stays",
-      beds: "2 Single or 1 Double bed",
+      description: "Quick Stay / Essential - Optimized for speed and productivity",
+      beds: "Minimalist ergonomic space for 1-2 guests",
       image: room1Image
     },
     {
       id: "studio", 
       title: "The Studio",
-      description: "Our signature balance of comfort and utility",
-      beds: "2 Single or 1 Double bed",
+      description: "Standard / Extended Stay - Enhanced space with hand-crafted finishes",
+      beds: "Flexible King or Twin configurations",
       image: room2Image
     },
     {
       id: "suite",
       title: "The Suite", 
-      description: "Expanded luxury for groups or long-stay comfort",
-      beds: "Sleeps 4 (King bed configuration)",
+      description: "Group / Multi-Sleeper - Expansive dormitory-style layout",
+      beds: "Sleeps 4 with expanded space",
       image: heroRoomImage
     }
   ];
@@ -136,7 +136,7 @@ const Book = () => {
                   </h3>
 
                   {/* Room Details - Sans-serif */}
-                  <p className="text-gray-600 text-xs leading-relaxed font-sans">
+                  <p className="text-gray-600 text-[10px] leading-relaxed font-sans">
                     {room.description}
                   </p>
 

@@ -1,21 +1,22 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Wifi, Droplets, Zap, Lock, Wind, ChevronLeft, ChevronRight } from "lucide-react";
+import { Wifi, Droplets, Zap, Lock, Wind, ChevronLeft, ChevronRight, Tv, Users } from "lucide-react";
 import { motion } from "framer-motion";
 import AnimatedSection from "@/components/AnimatedSection";
-import room1 from "@/assets/room-1.jpg";
-import room2 from "@/assets/room-2.jpg";
-import heroRoom from "@/assets/hero-room.jpg";
+import room1 from "@/assets/image (1).jpeg";
+import room2 from "@/assets/image (2).jpeg";
 import { useState } from "react";
 
-const roomImages = [heroRoom, room1, room2];
+const roomImages = [room1, room2];
 
 const amenities = [
-  { icon: Wifi, label: "Fast fibre Wi-Fi" },
+  { icon: Wifi, label: "Universal plug sockets with integrated chargers" },
   { icon: Droplets, label: "High-flow shower" },
-  { icon: Wind, label: "Naturally cooled" },
+  { icon: Wind, label: "High-efficiency Aircron climate control" },
   { icon: Zap, label: "Backup water & power" },
   { icon: Lock, label: "Instant code check-in" },
+  { icon: Tv, label: "16\" flat-screen entertainment" },
+  { icon: Users, label: "Private external entrance" },
 ];
 
 const ImageCarousel = () => {
@@ -83,12 +84,15 @@ const Rooms = () => {
             </AnimatedSection>
             <AnimatedSection>
               <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
-                <h1 className="font-display text-4xl md:text-5xl font-semibold">Transit</h1>
+                <h1 className="font-display text-4xl md:text-5xl font-semibold">The Transit</h1>
                 <div className="border-t sm:border-t-0 sm:pt-0 pt-4">
                   <div className="mb-4">
-                    <span className="text-3xl font-bold">R650</span>
+                    <span className="text-3xl font-bold">R800</span>
                     <span className="text-muted-foreground"> / night</span>
                   </div>
+                  <p className="text-sm font-medium text-primary mb-4">
+                    Sleeps 2 guests
+                  </p>
                   <Button variant="hero" size="lg" asChild className="w-full sm:w-auto">
                     <Link to="/book">Book Your Stay</Link>
                   </Button>
@@ -100,31 +104,51 @@ const Rooms = () => {
           {/* Right Column - Room Information */}
           <AnimatedSection className="space-y-6">
             <div className="space-y-4">
+              <h3 className="font-semibold text-lg mb-2">Quick Stay / Essential</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Four identical minimalist rooms designed for maximum efficiency. We believe in essential comfort — 
-                everything you need, nothing you don't. Each room is carefully configured for short, necessary stays 
-                when you just need a clean, safe space to rest.
-              </p>
-              <p className="text-muted-foreground leading-relaxed">
-                Perfect for business travelers, airport stopovers, or those in transit. Located in the heart of Kempton Park 
-                for quick access to OR Tambo and major routes. This is your efficient base for arriving, departing, or 
-                moving between destinations.
+                Optimized for speed and productivity, this minimalist ergonomic space is designed for travelers who need a clean, high-efficiency base between destinations.
               </p>
             </div>
 
             {/* Essential Features */}
             <div>
-              <h3 className="font-semibold text-lg mb-4">Essential Features Only</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {amenities.map((a) => (
-                  <div key={a.label} className="flex items-center gap-3">
-                    <a.icon size={20} strokeWidth={1.5} className="text-primary flex-shrink-0" />
-                    <span className="text-sm">{a.label}</span>
-                  </div>
-                ))}
+              <h3 className="font-semibold text-lg mb-4">Key Features</h3>
+              
+              {/* Feature Blocks Grid */}
+              <div className="grid grid-cols-2 gap-4 mb-6">
+                <div className="bg-card border border-border/50 rounded-lg p-4 text-center">
+                  <h4 className="font-medium text-sm mb-2">Seamless Utility</h4>
+                  <p className="text-xs text-muted-foreground">Ergonomically planned flow with "no-fluff" minimalist steel storage.</p>
+                </div>
+                <div className="bg-card border border-border/50 rounded-lg p-4 text-center">
+                  <h4 className="font-medium text-sm mb-2">Maintenance Standard</h4>
+                  <p className="text-xs text-muted-foreground">Premium mattresses on a guaranteed 6-year replacement cycle.</p>
+                </div>
+                <div className="bg-card border border-border/50 rounded-lg p-4 text-center">
+                  <h4 className="font-medium text-sm mb-2">Tech-Ready</h4>
+                  <p className="text-xs text-muted-foreground">Universal plug sockets with integrated high-speed cellphone chargers.</p>
+                </div>
+                <div className="bg-card border border-border/50 rounded-lg p-4 text-center">
+                  <h4 className="font-medium text-sm mb-2">Private Access</h4>
+                  <p className="text-xs text-muted-foreground">Private external entrance for enhanced security and convenience.</p>
+                </div>
               </div>
+              
+              {/* Amenities List */}
+              <div>
+                <h4 className="font-medium text-sm mb-3">Included Amenities</h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {amenities.map((a) => (
+                    <div key={a.label} className="flex items-center gap-3">
+                      <a.icon size={20} strokeWidth={1.5} className="text-primary flex-shrink-0" />
+                      <span className="text-sm">{a.label}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              
               <p className="text-xs text-muted-foreground mt-4 italic">
-                <strong>Note:</strong> No kettle, or unnecessary amenities. Just premium linens, hot showers, high-speed connectivity, and a pristine environment designed for speed and productivity. See FAQ for more information.
+                <strong>Note:</strong> Tech-ready minimalist design focused on speed and productivity. See FAQ for more information.
               </p>
             </div>
           </AnimatedSection>

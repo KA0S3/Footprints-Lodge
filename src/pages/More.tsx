@@ -107,22 +107,20 @@ const More = () => {
               </div>
               
               <div className="space-y-4 text-muted-foreground">
+                <h3 className="font-display text-xl font-semibold text-foreground leading-relaxed">
+                  20 Years of Heritage. Reimagined for the Modern Traveler.
+                </h3>
+                
                 <p className="leading-relaxed">
-                  Welcome to Footprints Lodge, where comfort meets convenience in the heart of Kempton Park. 
-                  Our journey began with a simple vision: to create a sanctuary that feels like home while 
-                  offering the modern amenities today's travelers expect.
+                  For two decades, Footprints Lodge has been a sanctuary in the heart of Kempton Park. But we believe that true hospitality requires moving with the times. In 2026, we undertook a radical transformation—moving away from our rustic roots toward a sleek, tech-forward aesthetic.
                 </p>
                 
                 <p className="leading-relaxed">
-                  Founded on principles of hospitality and attention to detail, Footprints Lodge has become 
-                  more than just a place to stay—it's an experience. Every corner of our lodge tells a story 
-                  of thoughtful design, from our carefully curated rooms to our seamless self check-in process.
+                  What began as a necessary repair to a 50-year-old pipe became a complete architectural rebirth. We stripped the lodge to its original shell to build something smarter and more sustainable. We've replaced bulky, dated interiors with minimalist steel and "upcycled" sleeper wood salvaged right here from the property.
                 </p>
                 
                 <p className="leading-relaxed">
-                  Whether you're here for business or leisure, for a night or for weeks, we're committed to 
-                  making your stay memorable. Our story continues with every guest who walks through our doors, 
-                  leaving their footprints in our growing family.
+                  Our evolution isn't just aesthetic; it's mechanical. We've implemented a "Continuous Maintenance" protocol—including a 6-year mattress replacement cycle—and cut our energy footprint by 40% through solar tech and recycled heat systems. We've traded the old for the optimized, ensuring that while our look is new, our commitment to the community remains as solid as the stone foundations we were built on.
                 </p>
               </div>
             </div>

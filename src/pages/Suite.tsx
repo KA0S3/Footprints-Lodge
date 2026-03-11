@@ -1,25 +1,25 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Wifi, Droplets, Zap, Lock, Wind, ChevronLeft, ChevronRight, Tv, Coffee, Refrigerator, Bath, ArrowLeft } from "lucide-react";
+import { Wifi, Droplets, Zap, Lock, Wind, ChevronLeft, ChevronRight, Tv, Coffee, Refrigerator, Bath, ArrowLeft, Users } from "lucide-react";
 import { motion } from "framer-motion";
 import AnimatedSection from "@/components/AnimatedSection";
-import room1 from "@/assets/room-1.jpg";
-import room2 from "@/assets/room-2.jpg";
-import heroRoom from "@/assets/hero-room.jpg";
+import room1 from "@/assets/image (10).jpeg";
+import room2 from "@/assets/image (1).jpeg";
 import { useState } from "react";
 
-const roomImages = [heroRoom, room1, room2];
+const roomImages = [room1, room2];
 
 const amenities = [
   { icon: Wifi, label: "Fast fibre Wi-Fi" },
-  { icon: Tv, label: "Smart TV with streaming" },
+  { icon: Tv, label: "16\" flat-screen entertainment" },
   { icon: Coffee, label: "Coffee & tea station" },
-  { icon: Refrigerator, label: "Mini refrigerator" },
+  { icon: Refrigerator, label: "Private beverage cooler" },
   { icon: Bath, label: "Luxury bathroom amenities" },
-  { icon: Droplets, label: "High-flow shower" },
+  { icon: Droplets, label: "High-flow rain shower" },
   { icon: Wind, label: "Naturally cooled" },
   { icon: Zap, label: "Backup water & power" },
   { icon: Lock, label: "Instant code check-in" },
+  { icon: Users, label: "Multi-sleeper configurations" },
 ];
 
 const ImageCarousel = () => {
@@ -96,12 +96,15 @@ const Suite = () => {
             </AnimatedSection>
             <AnimatedSection>
               <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
-                <h1 className="font-display text-4xl md:text-5xl font-semibold">Suite</h1>
+                <h1 className="font-display text-4xl md:text-5xl font-semibold">The Suite</h1>
                 <div className="border-t sm:border-t-0 sm:pt-0 pt-4">
                   <div className="mb-4">
                     <span className="text-3xl font-bold">R1200</span>
                     <span className="text-muted-foreground"> / night</span>
                   </div>
+                  <p className="text-sm font-medium text-primary mb-4">
+                    Sleeps up to 4 guests
+                  </p>
                   <Button variant="hero" size="lg" asChild className="w-full sm:w-auto">
                     <Link to="/book">Book Your Stay</Link>
                   </Button>
@@ -113,30 +116,51 @@ const Suite = () => {
           {/* Right Column - Room Information */}
           <AnimatedSection className="space-y-6">
             <div className="space-y-4">
+              <h3 className="font-semibold text-lg mb-2">Group / Multi-Sleeper</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Premium suite rooms offering the ultimate in comfort and luxury. Spacious and well-appointed 
-                for discerning guests who demand the finest amenities and exceptional service.
-              </p>
-              <p className="text-muted-foreground leading-relaxed">
-                Perfect for executives, special occasions, or those seeking an elevated travel experience. 
-                Located in the heart of Kempton Park with premium amenities for both business and leisure travelers.
+                Our largest floor plan designed for families, teams, or groups, offering an expansive dormitory-style layout without sacrificing our core standards of cleanliness and tech-forward design.
               </p>
             </div>
 
             {/* Premium Features */}
             <div>
-              <h3 className="font-semibold text-lg mb-4">Premium Luxury Features</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {amenities.map((a) => (
-                  <div key={a.label} className="flex items-center gap-3">
-                    <a.icon size={20} strokeWidth={1.5} className="text-primary flex-shrink-0" />
-                    <span className="text-sm">{a.label}</span>
-                  </div>
-                ))}
+              <h3 className="font-semibold text-lg mb-4">Key Features</h3>
+              
+              {/* Feature Blocks Grid */}
+              <div className="grid grid-cols-2 gap-4 mb-6">
+                <div className="bg-card border border-border/50 rounded-lg p-4 text-center">
+                  <h4 className="font-medium text-sm mb-2">Expansive Space</h4>
+                  <p className="text-xs text-muted-foreground">Multi-sleeper configurations with ample room for group coordination.</p>
+                </div>
+                <div className="bg-card border border-border/50 rounded-lg p-4 text-center">
+                  <h4 className="font-medium text-sm mb-2">Full Utility</h4>
+                  <p className="text-xs text-muted-foreground">Includes a private beverage cooler and a dedicated workspace area.</p>
+                </div>
+                <div className="bg-card border border-border/50 rounded-lg p-4 text-center">
+                  <h4 className="font-medium text-sm mb-2">Safe Haven</h4>
+                  <p className="text-xs text-muted-foreground">Integrated "burglar-proofing" art and 24/7 security connectivity.</p>
+                </div>
+                <div className="bg-card border border-border/50 rounded-lg p-4 text-center">
+                  <h4 className="font-medium text-sm mb-2">Enhanced Comfort</h4>
+                  <p className="text-xs text-muted-foreground">Premium linens and luxury bathroom amenities for superior comfort.</p>
+                </div>
               </div>
+              
+              {/* Amenities List */}
+              <div>
+                <h4 className="font-medium text-sm mb-3">Included Amenities</h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {amenities.map((a) => (
+                    <div key={a.label} className="flex items-center gap-3">
+                      <a.icon size={20} strokeWidth={1.5} className="text-primary flex-shrink-0" />
+                      <span className="text-sm">{a.label}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              
               <p className="text-xs text-muted-foreground mt-4 italic">
-                <strong>Note:</strong> Includes all premium amenities - smart TV, coffee/tea station, mini refrigerator, 
-                luxury bathroom products, premium linens, separate workspace, and enhanced room service options.
+                <strong>Note:</strong> Expansive dormitory-style layout with full accessibility and enhanced security features.
               </p>
             </div>
           </AnimatedSection>
