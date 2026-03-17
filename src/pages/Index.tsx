@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import ProgressiveImage from "@/components/ProgressiveImage";
+import ProgressiveImage from "../components/ProgressiveImage.tsx";
 const Index = () => {
   return (
     <div className="min-h-screen flex flex-col relative">

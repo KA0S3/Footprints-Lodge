@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { ArrowLeft, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import ProgressiveImage from "@/components/ProgressiveImage";
+import ProgressiveImage from "../components/ProgressiveImage.tsx";
 
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
