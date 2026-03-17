@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import ProgressiveImage from "@/components/ProgressiveImage";
 const Index = () => {
   return (
     <div className="min-h-screen flex flex-col relative">
@@ -8,10 +9,12 @@ const Index = () => {
       <section className="flex-1 relative overflow-hidden" aria-label="Hero">
         {/* Background */}
         <div className="absolute inset-0">
-          <img 
-            src="/assets/Cummunal/GOOSE-89.JPG" 
-            alt="Footprints Lodge interior" 
+          <ProgressiveImage
+            src="/assets/Cummunal/GOOSE-89.JPG"
+            alt="Footprints Lodge interior"
             className="w-full h-full object-cover"
+            aspectRatio="video"
+            priority={true}
           />
           <div className="absolute inset-0 bg-gradient-to-br from-slate-900/80 via-slate-800/80 to-slate-900/80" />
         </div>
