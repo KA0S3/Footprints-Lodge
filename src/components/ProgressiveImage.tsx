@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { cn } from '@/lib/utils';
+import { cn } from '../lib/utils';
 
 interface ProgressiveImageProps {
   src: string;
@@ -36,16 +36,10 @@ const ProgressiveImage = ({
     return originalSrc;
   };
 
-  // Generate a data URI for a simple blur placeholder
+  // Generate a simple color placeholder
   const generateBlurPlaceholder = () => {
-    // Simple SVG blur placeholder
-    const svg = `
-      <svg width="40" height="40" xmlns="http://www.w3.org/2000/svg">
-        <rect width="100%" height="100%" fill="#e5e7eb"/>
-        <rect width="100%" height="100%" fill="#d1d5db" opacity="0.5"/>
-      </svg>
-    `;
-    return `data:image/svg+xml;base64,${btoa(svg)}`;
+    // Return a simple color instead of SVG to avoid btoa issues
+    return '#e5e7eb';
   };
 
   useEffect(() => {
@@ -107,18 +101,14 @@ const ProgressiveImage = ({
 
   return (
     <div className={cn('relative overflow-hidden', aspectRatioClasses[aspectRatio], className)}>
-      {/* Initial blur placeholder */}
+      {/* Initial color placeholder */}
       <div 
         className={cn(
           'absolute inset-0 transition-all duration-500',
           isLoaded ? 'opacity-0' : 'opacity-100'
         )}
         style={{
-          backgroundImage: `url(${generateBlurPlaceholder()})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          filter: 'blur(20px)',
-          transform: 'scale(1.1)',
+          backgroundColor: generateBlurPlaceholder(),
         }}
       />
 
