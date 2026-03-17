@@ -23,7 +23,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const [scrolled, setScrolled] = useState(false);
   
   // Pages where the Book Now button should be hidden
-  const hideBookButton = ['/book', '/rooms', '/studio', '/suite'].includes(location.pathname);
+  const hideBookButton = ['/book', '/rooms', '/studio', '/suite', '/family', '/another-stay'].includes(location.pathname);
   useEffect(() => {
     const handleScroll = () => {
       const offset = window.scrollY;
@@ -95,7 +95,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         </AnimatePresence>
       </motion.header>
 
-      <main className="flex-1">{children}</main>
+      <main className="flex-1 overflow-y-auto scrollbar-hide">{children}</main>
 
       {/* Compact footer */}
       <footer className="bg-foreground text-background mt-[5px]">

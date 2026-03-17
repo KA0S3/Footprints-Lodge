@@ -3,19 +3,18 @@ import { Button } from "@/components/ui/button";
 import { Wifi, Droplets, Zap, Lock, Wind, ChevronLeft, ChevronRight, Tv, Users } from "lucide-react";
 import { motion } from "framer-motion";
 import AnimatedSection from "@/components/AnimatedSection";
-import room1 from "@/assets/image (1).jpeg";
-import room2 from "@/assets/image (2).jpeg";
 import { useState } from "react";
 
-const roomImages = [room1, room2];
+const roomImages = [
+  "/src/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.24.jpeg",
+  "/src/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.25.jpeg"
+];
 
 const amenities = [
   { icon: Wifi, label: "Universal plug sockets with integrated chargers" },
   { icon: Droplets, label: "High-flow shower" },
-  { icon: Wind, label: "High-efficiency Aircron climate control" },
   { icon: Zap, label: "Backup water & power" },
   { icon: Lock, label: "Instant code check-in" },
-  { icon: Tv, label: "16\" flat-screen entertainment" },
   { icon: Users, label: "Private external entrance" },
 ];
 
@@ -34,7 +33,7 @@ const ImageCarousel = () => {
     <div className="relative w-full aspect-[4/3] overflow-hidden rounded-lg">
       <img
         src={roomImages[activeImage]}
-        alt="Premium minimalist room at Footprints Lodge"
+        alt="Quick Stay Room"
         className="w-full h-full object-cover"
       />
       
@@ -84,7 +83,7 @@ const Rooms = () => {
             </AnimatedSection>
             <AnimatedSection>
               <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
-                <h1 className="font-display text-4xl md:text-5xl font-semibold">The Transit</h1>
+                <h1 className="font-display text-4xl md:text-5xl font-semibold">Quick Stay</h1>
                 <div className="border-t sm:border-t-0 sm:pt-0 pt-4">
                   <div className="mb-4">
                     <span className="text-3xl font-bold">R800</span>
@@ -104,9 +103,9 @@ const Rooms = () => {
           {/* Right Column - Room Information */}
           <AnimatedSection className="space-y-6">
             <div className="space-y-4">
-              <h3 className="font-semibold text-lg mb-2">Quick Stay / Essential</h3>
+              <h3 className="font-semibold text-lg mb-2">The Essentials</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Optimized for speed and productivity, this minimalist ergonomic space is designed for travelers who need a clean, high-efficiency base between destinations.
+                Optimized for speed and no-contact efficiency, this minimalist space provides just the essentials - a comfortable bed and private bathroom for travelers who value simplicity and convenience.
               </p>
             </div>
 
@@ -117,16 +116,16 @@ const Rooms = () => {
               {/* Feature Blocks Grid */}
               <div className="grid grid-cols-2 gap-4 mb-6">
                 <div className="bg-card border border-border/50 rounded-lg p-4 text-center">
-                  <h4 className="font-medium text-sm mb-2">Seamless Utility</h4>
-                  <p className="text-xs text-muted-foreground">Ergonomically planned flow with "no-fluff" minimalist steel storage.</p>
+                  <h4 className="font-medium text-sm mb-2">Speed Focus</h4>
+                  <p className="text-xs text-muted-foreground">No-contact check-in and streamlined essentials for quick turnaround.</p>
                 </div>
                 <div className="bg-card border border-border/50 rounded-lg p-4 text-center">
-                  <h4 className="font-medium text-sm mb-2">Maintenance Standard</h4>
-                  <p className="text-xs text-muted-foreground">Premium mattresses on a guaranteed 6-year replacement cycle.</p>
+                  <h4 className="font-medium text-sm mb-2">Core Comfort</h4>
+                  <p className="text-xs text-muted-foreground">Premium mattress and high-flow shower for essential comfort.</p>
                 </div>
                 <div className="bg-card border border-border/50 rounded-lg p-4 text-center">
                   <h4 className="font-medium text-sm mb-2">Tech-Ready</h4>
-                  <p className="text-xs text-muted-foreground">Universal plug sockets with integrated high-speed cellphone chargers.</p>
+                  <p className="text-xs text-muted-foreground">Universal plug sockets with integrated high-speed chargers.</p>
                 </div>
                 <div className="bg-card border border-border/50 rounded-lg p-4 text-center">
                   <h4 className="font-medium text-sm mb-2">Private Access</h4>
@@ -148,7 +147,7 @@ const Rooms = () => {
               </div>
               
               <p className="text-xs text-muted-foreground mt-4 italic">
-                <strong>Note:</strong> Tech-ready minimalist design focused on speed and productivity. See FAQ for more information.
+                <strong>Note:</strong> Bed and bathroom only. Speed-focused minimalist design with no-contact efficiency.
               </p>
             </div>
           </AnimatedSection>

@@ -92,5 +92,18 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    function({ addUtilities }: { addUtilities: any }) {
+      addUtilities({
+        '.scrollbar-hide': {
+          '-ms-overflow-style': 'none',  /* IE and Edge */
+          'scrollbar-width': 'none',  /* Firefox */
+          '&::-webkit-scrollbar': {
+            display: 'none',  /* Chrome, Safari and Opera */
+          },
+        },
+      })
+    }
+  ],
 } satisfies Config;

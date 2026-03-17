@@ -7,7 +7,6 @@ import Layout from "./components/Layout";
 import ScrollToTop from "./components/ScrollToTop";
 import Index from "./pages/Index";
 import Book from "./pages/Book";
-import BookForm from "./pages/BookForm";
 import HowItWorks from "./pages/HowItWorks";
 import Location from "./pages/Location";
 import FAQ from "./pages/FAQ";
@@ -18,6 +17,12 @@ import NotFound from "./pages/NotFound";
 import Rooms from "./pages/Rooms";
 import Studio from "./pages/Studio";
 import Suite from "./pages/Suite";
+import Family from "./pages/Family";
+import AnotherStay from "./pages/AnotherStay";
+import Flat from "./pages/Flat";
+import Conference from "./pages/Conference";
+import Lounge from "./pages/Lounge";
+import Gallery from "./pages/Gallery";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +43,12 @@ const App = () => (
                 <Route path="/rooms" element={<Rooms />} />
                 <Route path="/studio" element={<Studio />} />
                 <Route path="/suite" element={<Suite />} />
+                <Route path="/family" element={<Family />} />
+                <Route path="/flat" element={<Flat />} />
+                <Route path="/conference" element={<Conference />} />
+                <Route path="/lounge" element={<Lounge />} />
+                <Route path="/gallery" element={<Gallery />} />
+                <Route path="/another-stay" element={<AnotherStay />} />
                 <Route path="/how-it-works" element={<HowItWorks />} />
                 <Route path="/location" element={<Location />} />
                 <Route path="/faq" element={<FAQ />} />

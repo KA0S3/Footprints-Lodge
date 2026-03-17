@@ -3,23 +3,20 @@ import { Button } from "@/components/ui/button";
 import { Wifi, Droplets, Zap, Lock, Wind, ChevronLeft, ChevronRight, Tv, Coffee, Refrigerator, Bath, ArrowLeft, Users } from "lucide-react";
 import { motion } from "framer-motion";
 import AnimatedSection from "@/components/AnimatedSection";
-import room1 from "@/assets/image (10).jpeg";
-import room2 from "@/assets/image (1).jpeg";
 import { useState } from "react";
 
-const roomImages = [room1, room2];
+const roomImages = [
+  "/src/assets/3Suite/GOOSE-100.JPG",
+  "/src/assets/3Suite/GOOSE-105.JPG"
+];
 
 const amenities = [
-  { icon: Wifi, label: "Fast fibre Wi-Fi" },
-  { icon: Tv, label: "16\" flat-screen entertainment" },
-  { icon: Coffee, label: "Coffee & tea station" },
-  { icon: Refrigerator, label: "Private beverage cooler" },
-  { icon: Bath, label: "Luxury bathroom amenities" },
-  { icon: Droplets, label: "High-flow rain shower" },
-  { icon: Wind, label: "Naturally cooled" },
-  { icon: Zap, label: "Backup water & power" },
+  { icon: Tv, label: "Smart TV" },
+  { icon: Wind, label: "Aircon" },
+  { icon: Coffee, label: "Kettle with tea/coffee" },
+  { icon: Bath, label: "En-suite Bathroom" },
+  { icon: Wifi, label: "High-speed fibre Wi-Fi" },
   { icon: Lock, label: "Instant code check-in" },
-  { icon: Users, label: "Multi-sleeper configurations" },
 ];
 
 const ImageCarousel = () => {
@@ -37,7 +34,7 @@ const ImageCarousel = () => {
     <div className="relative w-full aspect-[4/3] overflow-hidden rounded-lg">
       <img
         src={roomImages[activeImage]}
-        alt="Premium suite room at Footprints Lodge"
+        alt="King/Twin Room"
         className="w-full h-full object-cover"
       />
       
@@ -96,17 +93,17 @@ const Suite = () => {
             </AnimatedSection>
             <AnimatedSection>
               <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
-                <h1 className="font-display text-4xl md:text-5xl font-semibold">The Suite</h1>
+                <h1 className="font-display text-4xl md:text-5xl font-semibold">King/Twin</h1>
                 <div className="border-t sm:border-t-0 sm:pt-0 pt-4">
                   <div className="mb-4">
-                    <span className="text-3xl font-bold">R1200</span>
+                    <span className="text-3xl font-bold">R750</span>
                     <span className="text-muted-foreground"> / night</span>
                   </div>
                   <p className="text-sm font-medium text-primary mb-4">
-                    Sleeps up to 4 guests
+                    King or 2 Twin Beds
                   </p>
                   <Button variant="hero" size="lg" asChild className="w-full sm:w-auto">
-                    <Link to="/book">Book Your Stay</Link>
+                    <Link to="/another-stay">View Details</Link>
                   </Button>
                 </div>
               </div>
@@ -116,33 +113,33 @@ const Suite = () => {
           {/* Right Column - Room Information */}
           <AnimatedSection className="space-y-6">
             <div className="space-y-4">
-              <h3 className="font-semibold text-lg mb-2">Group / Multi-Sleeper</h3>
+              <h3 className="font-semibold text-lg mb-2">King / Twin Room</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Our largest floor plan designed for families, teams, or groups, offering an expansive dormitory-style layout without sacrificing our core standards of cleanliness and tech-forward design.
+                Our flexible King/Twin room offers premium amenities with the choice of a King bed or 2 Twin beds. Perfect for couples or friends traveling together, featuring Smart TV, air conditioning, and kettle facilities.
               </p>
             </div>
 
             {/* Premium Features */}
             <div>
-              <h3 className="font-semibold text-lg mb-4">Key Features</h3>
+              <h3 className="font-semibold text-lg mb-4">Room Features</h3>
               
               {/* Feature Blocks Grid */}
               <div className="grid grid-cols-2 gap-4 mb-6">
                 <div className="bg-card border border-border/50 rounded-lg p-4 text-center">
-                  <h4 className="font-medium text-sm mb-2">Expansive Space</h4>
-                  <p className="text-xs text-muted-foreground">Multi-sleeper configurations with ample room for group coordination.</p>
+                  <h4 className="font-medium text-sm mb-2">Flexible Bedding</h4>
+                  <p className="text-xs text-muted-foreground">King bed or 2 Twin beds configuration available.</p>
                 </div>
                 <div className="bg-card border border-border/50 rounded-lg p-4 text-center">
-                  <h4 className="font-medium text-sm mb-2">Full Utility</h4>
-                  <p className="text-xs text-muted-foreground">Includes a private beverage cooler and a dedicated workspace area.</p>
+                  <h4 className="font-medium text-sm mb-2">Entertainment</h4>
+                  <p className="text-xs text-muted-foreground">Smart TV with high-speed Wi-Fi connectivity.</p>
                 </div>
                 <div className="bg-card border border-border/50 rounded-lg p-4 text-center">
-                  <h4 className="font-medium text-sm mb-2">Safe Haven</h4>
-                  <p className="text-xs text-muted-foreground">Integrated "burglar-proofing" art and 24/7 security connectivity.</p>
+                  <h4 className="font-medium text-sm mb-2">Refreshment</h4>
+                  <p className="text-xs text-muted-foreground">Kettle with tea and coffee facilities.</p>
                 </div>
                 <div className="bg-card border border-border/50 rounded-lg p-4 text-center">
-                  <h4 className="font-medium text-sm mb-2">Enhanced Comfort</h4>
-                  <p className="text-xs text-muted-foreground">Premium linens and luxury bathroom amenities for superior comfort.</p>
+                  <h4 className="font-medium text-sm mb-2">Comfort</h4>
+                  <p className="text-xs text-muted-foreground">Air conditioning and en-suite bathroom.</p>
                 </div>
               </div>
               
@@ -160,7 +157,7 @@ const Suite = () => {
               </div>
               
               <p className="text-xs text-muted-foreground mt-4 italic">
-                <strong>Note:</strong> Expansive dormitory-style layout with full accessibility and enhanced security features.
+                <strong>Note:</strong> Some rooms include a bar fridge. All rooms feature premium amenities with flexible bedding options.
               </p>
             </div>
           </AnimatedSection>

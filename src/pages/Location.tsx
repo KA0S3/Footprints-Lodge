@@ -2,7 +2,6 @@ import { MapPin, Coffee, ShoppingBag, Utensils, Car, Plane, Heart, IceCream, Fil
 import { motion } from "framer-motion";
 import { useState } from "react";
 import AnimatedSection from "@/components/AnimatedSection";
-import neighborhoodImg from "@/assets/neighborhood.jpg";
 
 const categories = [
   { icon: Film, label: "Entertainment", count: "15+", description: "Casinos, cinemas, theatres, trampolines, spas" },
@@ -125,14 +124,14 @@ const Location = () => {
     <article>
     {/* Hero Section with Extended Background */}
     <section className="relative h-96 md:h-[500px] overflow-hidden">
-      <motion.img
-        initial={{ scale: 1.05 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 1 }}
-        src={neighborhoodImg}
-        alt="Kempton Park neighbourhood near Footprints Lodge"
-        className="w-full h-full object-cover"
-      />
+      <div className="absolute inset-0">
+        <img 
+          src="/src/assets/outside/GOOSE-5.JPG" 
+          alt="Footprints Lodge exterior" 
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-400/50 to-green-400/50" />
+      </div>
       <div className="absolute inset-0 bg-foreground/60">
         {/* Heading at very top */}
         <div className="text-center pt-6">
@@ -226,10 +225,6 @@ const Location = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="flex items-center gap-2 mb-6">
-                    <Utensils className="text-primary" size={24} />
-                    <h3 className="font-display text-xl font-semibold">Dining & Cuisine</h3>
-                  </div>
                   
                   {/* Cafés Section */}
                   <div id="cafes-section" className="mb-12">
@@ -380,10 +375,6 @@ const Location = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="flex items-center gap-2 mb-6">
-                    <ShoppingBag className="text-primary" size={24} />
-                    <h3 className="font-display text-xl font-semibold">Shopping & Retail</h3>
-                  </div>
                   <div className="grid lg:grid-cols-2 gap-8 mb-8">
                     <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg p-6">
                       <h4 className="font-semibold text-lg mb-3">Harvest Place - Premium Shopping Experience</h4>
@@ -462,10 +453,6 @@ const Location = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="flex items-center gap-2 mb-6">
-                    <Film className="text-primary" size={24} />
-                    <h3 className="font-display text-xl font-semibold">Entertainment & Leisure</h3>
-                  </div>
                   <div className="grid sm:grid-cols-1 lg:grid-cols-3 gap-6">
                     {nearbyAmenities.entertainment.map((venue) => (
                       <motion.div
@@ -501,10 +488,6 @@ const Location = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="flex items-center gap-2 mb-6">
-                    <Heart className="text-primary" size={24} />
-                    <h3 className="font-display text-xl font-semibold">Essential Services</h3>
-                  </div>
                   <div className="grid sm:grid-cols-1 lg:grid-cols-3 gap-6">
                     {nearbyAmenities.essential.map((service) => (
                       <motion.div
@@ -540,10 +523,6 @@ const Location = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="flex items-center gap-2 mb-6">
-                    <Car className="text-primary" size={24} />
-                    <h3 className="font-display text-xl font-semibold">Transportation & Access</h3>
-                  </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg p-6">
                       <div className="flex items-center gap-3 mb-3">

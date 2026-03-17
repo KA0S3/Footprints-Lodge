@@ -71,25 +71,74 @@ const More = () => {
           animate="visible"
           className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-min"
         >
-          {/* How It Works - Top Left */}
+          {/* Gallery - Top Left */}
           <motion.div
             variants={itemVariants}
             whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
             className="row-span-1"
           >
             <Link
-              to="/how-it-works"
-              className="block h-full p-6 rounded-xl bg-card hover:border-yellow-600 transition-all duration-300 group shadow-sm hover:shadow-md"
+              to="/gallery"
+              className="block h-full p-3 rounded-xl bg-card border border-border/50 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col"
             >
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                <Info size={24} className="text-primary" />
-              </div>
-              <h2 className="font-display text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
-                How It Works
+              <h2 className="font-display text-xl font-semibold mb-2 text-primary">
+                Gallery
               </h2>
-              <p className="text-sm text-muted-foreground">
-                Step-by-step self check-in guide
-              </p>
+              <div className="flex-grow overflow-y-auto scrollbar-hide">
+                <div className="grid grid-cols-4 gap-1">
+                {/* 1Transit folder images */}
+                <img src="/src/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.24.jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
+                <img src="/src/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.25 (1).jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
+                <img src="/src/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.25 (2).jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
+                <img src="/src/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.25.jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
+                <img src="/src/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.26 (1).jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
+                <img src="/src/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.26 (2).jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
+                <img src="/src/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.26.jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
+                <img src="/src/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.27 (1).jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
+                <img src="/src/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.27 (2).jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
+                <img src="/src/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.27 (3).jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
+                <img src="/src/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.27.jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
+                <img src="/src/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.28 (1).jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
+                <img src="/src/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.28.jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
+                <img src="/src/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.29.jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
+                
+                {/* Cummunal folder images */}
+                <img src="/src/assets/Cummunal/GOOSE-70.JPG" alt="Common area" className="w-full h-8 object-cover rounded" />
+                <img src="/src/assets/Cummunal/GOOSE-71.JPG" alt="Common area" className="w-full h-8 object-cover rounded" />
+                <img src="/src/assets/Cummunal/GOOSE-81.JPG" alt="Common area" className="w-full h-8 object-cover rounded" />
+                <img src="/src/assets/Cummunal/GOOSE-89.JPG" alt="Common area" className="w-full h-8 object-cover rounded" />
+                <img src="/src/assets/Cummunal/GOOSE-90.JPG" alt="Common area" className="w-full h-8 object-cover rounded" />
+                <img src="/src/assets/Cummunal/GOOSE-92.JPG" alt="Common area" className="w-full h-8 object-cover rounded" />
+                <img src="/src/assets/Cummunal/WhatsApp Image 2026-03-11 at 14.06.19.jpeg" alt="Common area" className="w-full h-8 object-cover rounded" />
+                <img src="/src/assets/Cummunal/WhatsApp Image 2026-03-11 at 14.06.20 (3).jpeg" alt="Common area" className="w-full h-8 object-cover rounded" />
+                <img src="/src/assets/Cummunal/image (2).jpeg" alt="Common area" className="w-full h-8 object-cover rounded" />
+                
+                {/* Root level images */}
+                <img src="/src/assets/GOOSE-100.JPG" alt="Lodge interior" className="w-full h-8 object-cover rounded" />
+                <img src="/src/assets/GOOSE-105.JPG" alt="Lodge room" className="w-full h-8 object-cover rounded" />
+                <img src="/src/assets/GOOSE-106.JPG" alt="Lodge accommodation" className="w-full h-8 object-cover rounded" />
+                <img src="/src/assets/GOOSE-108.JPG" alt="Lodge facility" className="w-full h-8 object-cover rounded" />
+                <img src="/src/assets/GOOSE-110.JPG" alt="Lodge view" className="w-full h-8 object-cover rounded" />
+                <img src="/src/assets/GOOSE-118.JPG" alt="Lodge exterior" className="w-full h-8 object-cover rounded" />
+                <img src="/src/assets/GOOSE-73.JPG" alt="Lodge interior" className="w-full h-8 object-cover rounded" />
+                <img src="/src/assets/GOOSE-74.JPG" alt="Lodge room" className="w-full h-8 object-cover rounded" />
+                <img src="/src/assets/GOOSE-77.JPG" alt="Lodge facility" className="w-full h-8 object-cover rounded" />
+                <img src="/src/assets/GOOSE-86.JPG" alt="Lodge view" className="w-full h-8 object-cover rounded" />
+                
+                {/* Outside folder images */}
+                <img src="/src/assets/outside/GOOSE-101.JPG" alt="Lodge surroundings" className="w-full h-8 object-cover rounded" />
+                <img src="/src/assets/outside/GOOSE-120.JPG" alt="Lodge exterior" className="w-full h-8 object-cover rounded" />
+                <img src="/src/assets/outside/GOOSE-5.JPG" alt="Lodge surroundings" className="w-full h-8 object-cover rounded" />
+                <img src="/src/assets/outside/GOOSE-8.JPG" alt="Lodge exterior" className="w-full h-8 object-cover rounded" />
+                <img src="/src/assets/outside/GOOSE-85.JPG" alt="Lodge surroundings" className="w-full h-8 object-cover rounded" />
+                <img src="/src/assets/outside/WhatsApp Image 2026-03-11 at 14.06.20 (1).jpeg" alt="Lodge exterior" className="w-full h-8 object-cover rounded" />
+                <img src="/src/assets/outside/WhatsApp Image 2026-03-11 at 14.06.21.jpeg" alt="Lodge surroundings" className="w-full h-8 object-cover rounded" />
+                <img src="/src/assets/outside/WhatsApp Image 2026-03-11 at 14.06.28 (3).jpeg" alt="Lodge exterior" className="w-full h-8 object-cover rounded" />
+                </div>
+              </div>
+              <div className="mt-3 pt-2 border-t border-border/30">
+                <p className="text-xs text-muted-foreground text-center">Click to view full gallery</p>
+              </div>
             </Link>
           </motion.div>
 
@@ -134,17 +183,52 @@ const More = () => {
           >
             <Link
               to="/location"
-              className="block h-full p-6 rounded-xl bg-card hover:border-yellow-600 transition-all duration-300 group shadow-sm hover:shadow-md"
+              className="block h-full p-3 rounded-xl bg-card shadow-sm hover:shadow-md transition-all duration-300"
             >
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                <MapPin size={24} className="text-primary" />
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                  <MapPin size={20} className="text-primary" />
+                </div>
+                <h2 className="font-display text-xl font-semibold text-primary">
+                  Location
+                </h2>
               </div>
-              <h2 className="font-display text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
-                Location
-              </h2>
-              <p className="text-sm text-muted-foreground">
-                Find us in Kempton Park, Gauteng
-              </p>
+              
+              {/* Map Section */}
+              <div className="mb-4">
+                <div className="relative w-full h-32 bg-gray-100 rounded-lg overflow-hidden border border-border/30">
+                  <img
+                    src="/src/assets/MAP.png"
+                    alt="Footprints Lodge Location Map"
+                    className="absolute inset-0 w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900/10 to-transparent pointer-events-none" />
+                </div>
+              </div>
+              
+              {/* Nearby Landmarks */}
+              <div className="space-y-2">
+                <p className="font-semibold text-sm text-foreground mb-3">Nearby Landmarks</p>
+                <div className="space-y-1.5 text-xs text-muted-foreground">
+                  <div className="flex justify-between items-center">
+                    <span>OR Tambo International Airport</span>
+                    <span className="text-primary font-medium">10 mins</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span>Rhodesfield Gautrain Station</span>
+                    <span className="text-primary font-medium">8 mins</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span>Emperors Palace & Casino</span>
+                    <span className="text-primary font-medium">12 mins</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span>Local Shopping Hubs</span>
+                    <span className="text-primary font-medium">5 mins</span>
+                  </div>
+                </div>
+              </div>
             </Link>
           </motion.div>
 
@@ -167,11 +251,17 @@ const More = () => {
               <p className="text-sm text-muted-foreground mb-4">
                 Common questions answered
               </p>
-              <div className="space-y-2 text-xs text-muted-foreground">
-                <p>• Check-in & check-out times</p>
-                <p>• Payment methods</p>
-                <p>• Cancellation policy</p>
-                <p>• Amenities included</p>
+              <div className="space-y-3 text-xs text-muted-foreground">
+                <p className="leading-relaxed">• Check-in & check-out times</p>
+                <p className="leading-relaxed">• Payment methods</p>
+                <p className="leading-relaxed">• Cancellation policy</p>
+                <p className="leading-relaxed">• Amenities included</p>
+                <p className="leading-relaxed">• Eco-Friendly Initiatives</p>
+                <p className="text-xs text-muted-foreground pl-4 mt-1">Solar & Water recycling systems</p>
+                <p className="leading-relaxed">• Proximity to Hubs</p>
+                <p className="text-xs text-muted-foreground pl-4 mt-1">Gautrain & Airport access</p>
+                <p className="leading-relaxed">• Check-in Tech</p>
+                <p className="text-xs text-muted-foreground pl-4 mt-1">Keyless entry details</p>
               </div>
             </Link>
           </motion.div>
@@ -195,11 +285,22 @@ const More = () => {
               <p className="text-sm text-muted-foreground mb-4">
                 Get in touch with our team
               </p>
-              <div className="space-y-2 text-xs text-muted-foreground">
-                <p>• 24/7 support available</p>
-                <p>• Quick response guarantee</p>
-                <p>• Multiple contact methods</p>
-                <p>• Emergency assistance</p>
+              <div className="space-y-3 text-xs text-muted-foreground">
+                <p className="leading-relaxed">• 24/7 support available</p>
+                <p className="leading-relaxed">• Quick response guarantee</p>
+                <p className="leading-relaxed">• Multiple contact methods</p>
+                <p className="leading-relaxed">• Emergency assistance</p>
+                <div className="pt-2 mt-2 border-t border-border/30">
+                  <p className="font-semibold text-foreground mb-2">Direct Concierge</p>
+                  <p className="leading-relaxed">• WhatsApp Support</p>
+                  <p className="text-xs text-muted-foreground pl-4 mt-1">+27 72 985 9725</p>
+                  <p className="leading-relaxed mt-2">• Emergency After-Hours</p>
+                  <p className="text-xs text-muted-foreground pl-4 mt-1">+27 72 985 9725</p>
+                  <p className="leading-relaxed mt-2">• Physical Address</p>
+                  <p className="text-xs text-muted-foreground pl-4 mt-1">Footprints Lodge</p>
+                  <p className="text-xs text-muted-foreground pl-4">Kempton Park, Gauteng</p>
+                  <p className="text-xs text-muted-foreground pl-4">South Africa</p>
+                </div>
               </div>
             </Link>
           </motion.div>
