@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { ArrowLeft, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import ProgressiveImage from "@/components/ProgressiveImage";
 
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -37,16 +38,16 @@ const Gallery = () => {
       "/assets/Cummunal/image (2).jpeg",
     ],
     "Lodge Interior": [
-      "/assets/GOOSE-100.JPG",
-      "/assets/GOOSE-105.JPG",
-      "/assets/GOOSE-106.JPG",
-      "/assets/GOOSE-108.JPG",
-      "/assets/GOOSE-110.JPG",
-      "/assets/GOOSE-118.JPG",
-      "/assets/GOOSE-73.JPG",
-      "/assets/GOOSE-74.JPG",
-      "/assets/GOOSE-77.JPG",
-      "/assets/GOOSE-86.JPG",
+      "/assets/3Suite/GOOSE-100.JPG",
+      "/assets/3Suite/GOOSE-105.JPG",
+      "/assets/rooms/GOOSE-106.JPG",
+      "/assets/rooms/GOOSE-108.JPG",
+      "/assets/rooms/GOOSE-110.JPG",
+      "/assets/2Studio/GOOSE-118.JPG",
+      "/assets/rooms/GOOSE-73.JPG",
+      "/assets/2Studio/GOOSE-74.JPG",
+      "/assets/rooms/GOOSE-77.JPG",
+      "/assets/rooms/GOOSE-86.JPG",
     ],
     "Exterior & Surroundings": [
       "/assets/outside/GOOSE-101.JPG",
@@ -163,11 +164,11 @@ const Gallery = () => {
                     className="aspect-square overflow-hidden rounded-lg cursor-pointer group"
                     onClick={() => openLightbox(image)}
                   >
-                    <img
+                    <ProgressiveImage
                       src={image}
                       alt={`${category} - Image ${imageIndex + 1}`}
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                      loading="lazy"
+                      className="group-hover:scale-110 transition-transform duration-300"
+                      aspectRatio="square"
                     />
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
                   </motion.div>
@@ -204,10 +205,12 @@ const Gallery = () => {
             >
               <X size={24} />
             </Button>
-            <img
+            <ProgressiveImage
               src={selectedImage}
               alt="Full size image"
               className="w-full h-full object-contain"
+              aspectRatio="auto"
+              priority={true}
             />
           </motion.div>
         </motion.div>
