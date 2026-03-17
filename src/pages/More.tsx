@@ -87,53 +87,53 @@ const More = () => {
               <div className="flex-grow overflow-y-auto scrollbar-hide">
                 <div className="grid grid-cols-4 gap-1">
                 {/* 1Transit folder images */}
-                <img src="/src/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.24.jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
-                <img src="/src/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.25 (1).jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
-                <img src="/src/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.25 (2).jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
-                <img src="/src/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.25.jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
-                <img src="/src/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.26 (1).jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
-                <img src="/src/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.26 (2).jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
-                <img src="/src/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.26.jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
-                <img src="/src/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.27 (1).jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
-                <img src="/src/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.27 (2).jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
-                <img src="/src/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.27 (3).jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
-                <img src="/src/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.27.jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
-                <img src="/src/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.28 (1).jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
-                <img src="/src/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.28.jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
-                <img src="/src/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.29.jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
+                <img src="/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.24.jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
+                <img src="/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.25 (1).jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
+                <img src="/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.25 (2).jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
+                <img src="/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.25.jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
+                <img src="/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.26 (1).jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
+                <img src="/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.26 (2).jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
+                <img src="/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.26.jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
+                <img src="/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.27 (1).jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
+                <img src="/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.27 (2).jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
+                <img src="/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.27 (3).jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
+                <img src="/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.27.jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
+                <img src="/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.28 (1).jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
+                <img src="/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.28.jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
+                <img src="/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.29.jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
                 
                 {/* Cummunal folder images */}
-                <img src="/src/assets/Cummunal/GOOSE-70.JPG" alt="Common area" className="w-full h-8 object-cover rounded" />
-                <img src="/src/assets/Cummunal/GOOSE-71.JPG" alt="Common area" className="w-full h-8 object-cover rounded" />
-                <img src="/src/assets/Cummunal/GOOSE-81.JPG" alt="Common area" className="w-full h-8 object-cover rounded" />
-                <img src="/src/assets/Cummunal/GOOSE-89.JPG" alt="Common area" className="w-full h-8 object-cover rounded" />
-                <img src="/src/assets/Cummunal/GOOSE-90.JPG" alt="Common area" className="w-full h-8 object-cover rounded" />
-                <img src="/src/assets/Cummunal/GOOSE-92.JPG" alt="Common area" className="w-full h-8 object-cover rounded" />
-                <img src="/src/assets/Cummunal/WhatsApp Image 2026-03-11 at 14.06.19.jpeg" alt="Common area" className="w-full h-8 object-cover rounded" />
-                <img src="/src/assets/Cummunal/WhatsApp Image 2026-03-11 at 14.06.20 (3).jpeg" alt="Common area" className="w-full h-8 object-cover rounded" />
-                <img src="/src/assets/Cummunal/image (2).jpeg" alt="Common area" className="w-full h-8 object-cover rounded" />
+                <img src="/assets/Cummunal/GOOSE-70.JPG" alt="Common area" className="w-full h-8 object-cover rounded" />
+                <img src="/assets/Cummunal/GOOSE-71.JPG" alt="Common area" className="w-full h-8 object-cover rounded" />
+                <img src="/assets/Cummunal/GOOSE-81.JPG" alt="Common area" className="w-full h-8 object-cover rounded" />
+                <img src="/assets/Cummunal/GOOSE-89.JPG" alt="Common area" className="w-full h-8 object-cover rounded" />
+                <img src="/assets/Cummunal/GOOSE-90.JPG" alt="Common area" className="w-full h-8 object-cover rounded" />
+                <img src="/assets/Cummunal/GOOSE-92.JPG" alt="Common area" className="w-full h-8 object-cover rounded" />
+                <img src="/assets/Cummunal/WhatsApp Image 2026-03-11 at 14.06.19.jpeg" alt="Common area" className="w-full h-8 object-cover rounded" />
+                <img src="/assets/Cummunal/WhatsApp Image 2026-03-11 at 14.06.20 (3).jpeg" alt="Common area" className="w-full h-8 object-cover rounded" />
+                <img src="/assets/Cummunal/image (2).jpeg" alt="Common area" className="w-full h-8 object-cover rounded" />
                 
                 {/* Root level images */}
-                <img src="/src/assets/GOOSE-100.JPG" alt="Lodge interior" className="w-full h-8 object-cover rounded" />
-                <img src="/src/assets/GOOSE-105.JPG" alt="Lodge room" className="w-full h-8 object-cover rounded" />
-                <img src="/src/assets/GOOSE-106.JPG" alt="Lodge accommodation" className="w-full h-8 object-cover rounded" />
-                <img src="/src/assets/GOOSE-108.JPG" alt="Lodge facility" className="w-full h-8 object-cover rounded" />
-                <img src="/src/assets/GOOSE-110.JPG" alt="Lodge view" className="w-full h-8 object-cover rounded" />
-                <img src="/src/assets/GOOSE-118.JPG" alt="Lodge exterior" className="w-full h-8 object-cover rounded" />
-                <img src="/src/assets/GOOSE-73.JPG" alt="Lodge interior" className="w-full h-8 object-cover rounded" />
-                <img src="/src/assets/GOOSE-74.JPG" alt="Lodge room" className="w-full h-8 object-cover rounded" />
-                <img src="/src/assets/GOOSE-77.JPG" alt="Lodge facility" className="w-full h-8 object-cover rounded" />
-                <img src="/src/assets/GOOSE-86.JPG" alt="Lodge view" className="w-full h-8 object-cover rounded" />
+                <img src="/assets/GOOSE-100.JPG" alt="Lodge interior" className="w-full h-8 object-cover rounded" />
+                <img src="/assets/GOOSE-105.JPG" alt="Lodge room" className="w-full h-8 object-cover rounded" />
+                <img src="/assets/GOOSE-106.JPG" alt="Lodge accommodation" className="w-full h-8 object-cover rounded" />
+                <img src="/assets/GOOSE-108.JPG" alt="Lodge facility" className="w-full h-8 object-cover rounded" />
+                <img src="/assets/GOOSE-110.JPG" alt="Lodge view" className="w-full h-8 object-cover rounded" />
+                <img src="/assets/GOOSE-118.JPG" alt="Lodge exterior" className="w-full h-8 object-cover rounded" />
+                <img src="/assets/GOOSE-73.JPG" alt="Lodge interior" className="w-full h-8 object-cover rounded" />
+                <img src="/assets/GOOSE-74.JPG" alt="Lodge room" className="w-full h-8 object-cover rounded" />
+                <img src="/assets/GOOSE-77.JPG" alt="Lodge facility" className="w-full h-8 object-cover rounded" />
+                <img src="/assets/GOOSE-86.JPG" alt="Lodge view" className="w-full h-8 object-cover rounded" />
                 
                 {/* Outside folder images */}
-                <img src="/src/assets/outside/GOOSE-101.JPG" alt="Lodge surroundings" className="w-full h-8 object-cover rounded" />
-                <img src="/src/assets/outside/GOOSE-120.JPG" alt="Lodge exterior" className="w-full h-8 object-cover rounded" />
-                <img src="/src/assets/outside/GOOSE-5.JPG" alt="Lodge surroundings" className="w-full h-8 object-cover rounded" />
-                <img src="/src/assets/outside/GOOSE-8.JPG" alt="Lodge exterior" className="w-full h-8 object-cover rounded" />
-                <img src="/src/assets/outside/GOOSE-85.JPG" alt="Lodge surroundings" className="w-full h-8 object-cover rounded" />
-                <img src="/src/assets/outside/WhatsApp Image 2026-03-11 at 14.06.20 (1).jpeg" alt="Lodge exterior" className="w-full h-8 object-cover rounded" />
-                <img src="/src/assets/outside/WhatsApp Image 2026-03-11 at 14.06.21.jpeg" alt="Lodge surroundings" className="w-full h-8 object-cover rounded" />
-                <img src="/src/assets/outside/WhatsApp Image 2026-03-11 at 14.06.28 (3).jpeg" alt="Lodge exterior" className="w-full h-8 object-cover rounded" />
+                <img src="/assets/outside/GOOSE-101.JPG" alt="Lodge surroundings" className="w-full h-8 object-cover rounded" />
+                <img src="/assets/outside/GOOSE-120.JPG" alt="Lodge exterior" className="w-full h-8 object-cover rounded" />
+                <img src="/assets/outside/GOOSE-5.JPG" alt="Lodge surroundings" className="w-full h-8 object-cover rounded" />
+                <img src="/assets/outside/GOOSE-8.JPG" alt="Lodge exterior" className="w-full h-8 object-cover rounded" />
+                <img src="/assets/outside/GOOSE-85.JPG" alt="Lodge surroundings" className="w-full h-8 object-cover rounded" />
+                <img src="/assets/outside/WhatsApp Image 2026-03-11 at 14.06.20 (1).jpeg" alt="Lodge exterior" className="w-full h-8 object-cover rounded" />
+                <img src="/assets/outside/WhatsApp Image 2026-03-11 at 14.06.21.jpeg" alt="Lodge surroundings" className="w-full h-8 object-cover rounded" />
+                <img src="/assets/outside/WhatsApp Image 2026-03-11 at 14.06.28 (3).jpeg" alt="Lodge exterior" className="w-full h-8 object-cover rounded" />
                 </div>
               </div>
               <div className="mt-3 pt-2 border-t border-border/30">
@@ -198,7 +198,7 @@ const More = () => {
               <div className="mb-4">
                 <div className="relative w-full h-32 bg-gray-100 rounded-lg overflow-hidden border border-border/30">
                   <img
-                    src="/src/assets/MAP.png"
+                    src="/assets/MAP.png"
                     alt="Footprints Lodge Location Map"
                     className="absolute inset-0 w-full h-full object-cover"
                     loading="lazy"

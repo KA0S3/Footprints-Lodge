@@ -18,21 +18,21 @@ const Book = () => {
       title: "Quick Stay",
       description: "The Essentials - Optimized for speed and no-contact efficiency",
       beds: "Bed and bathroom only for 1-2 guests",
-      image: "/src/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.24.jpeg"
+      image: "/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.24.jpeg"
     },
     {
       id: "studio", 
       title: "Standard Room",
       description: "The Standard - Queen bed, TV, and en-suite bathroom",
       beds: "Sleeps 2 guests with enhanced comfort",
-      image: "/src/assets/2Studio/GOOSE-74.JPG"
+      image: "/assets/2Studio/GOOSE-74.JPG"
     },
     {
       id: "suite",
       title: "King/Twin", 
       description: "The Flexible - Premium flagship with full amenities",
       beds: "King or Twin configuration for up to 4 guests",
-      image: "/src/assets/3Suite/GOOSE-100.JPG"
+      image: "/assets/3Suite/GOOSE-100.JPG"
     },
   ];
 

@@ -9,7 +9,7 @@ const Index = () => {
         {/* Background */}
         <div className="absolute inset-0">
           <img 
-            src="/src/assets/Cummunal/GOOSE-89.JPG" 
+            src="/assets/Cummunal/GOOSE-89.JPG" 
             alt="Footprints Lodge interior" 
             className="w-full h-full object-cover"
           />

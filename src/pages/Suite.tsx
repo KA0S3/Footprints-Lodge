@@ -6,8 +6,8 @@ import AnimatedSection from "@/components/AnimatedSection";
 import { useState } from "react";
 
 const roomImages = [
-  "/src/assets/3Suite/GOOSE-100.JPG",
-  "/src/assets/3Suite/GOOSE-105.JPG"
+  "/assets/3Suite/GOOSE-100.JPG",
+  "/assets/3Suite/GOOSE-105.JPG"
 ];
 
 const amenities = [

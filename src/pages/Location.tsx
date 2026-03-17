@@ -126,7 +126,7 @@ const Location = () => {
     <section className="relative h-96 md:h-[500px] overflow-hidden">
       <div className="absolute inset-0">
         <img 
-          src="/src/assets/outside/GOOSE-5.JPG" 
+          src="/assets/outside/GOOSE-5.JPG" 
           alt="Footprints Lodge exterior" 
           className="w-full h-full object-cover"
         />

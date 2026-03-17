@@ -51,10 +51,10 @@ const RoomModal = ({ isOpen, onClose, room, onSelectRoom }: RoomModalProps) => {
         { icon: Zap, label: "USB Charging Ports" }
       ],
       gallery: [
-        "/src/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.24.jpeg",
-        "/src/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.25.jpeg", 
-        "/src/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.26.jpeg",
-        "/src/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.27.jpeg"
+        "/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.24.jpeg",
+        "/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.25.jpeg", 
+        "/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.26.jpeg",
+        "/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.27.jpeg"
       ]
     },
     suite: {
@@ -72,10 +72,10 @@ const RoomModal = ({ isOpen, onClose, room, onSelectRoom }: RoomModalProps) => {
         { icon: Droplets, label: "Rainfall Shower" }
       ],
       gallery: [
-        "/src/assets/3Suite/GOOSE-100.JPG",
-        "/src/assets/3Suite/GOOSE-105.JPG",
-        "/src/assets/rooms/GOOSE-106.JPG",
-        "/src/assets/rooms/GOOSE-108.JPG"
+        "/assets/3Suite/GOOSE-100.JPG",
+        "/assets/3Suite/GOOSE-105.JPG",
+        "/assets/rooms/GOOSE-106.JPG",
+        "/assets/rooms/GOOSE-108.JPG"
       ]
     },
     studio: {
@@ -91,10 +91,10 @@ const RoomModal = ({ isOpen, onClose, room, onSelectRoom }: RoomModalProps) => {
         { icon: Zap, label: "Work Desk" }
       ],
       gallery: [
-        "/src/assets/2Studio/GOOSE-74.JPG",
-        "/src/assets/2Studio/GOOSE-118.JPG",
-        "/src/assets/rooms/GOOSE-73.JPG",
-        "/src/assets/rooms/GOOSE-77.JPG"
+        "/assets/2Studio/GOOSE-74.JPG",
+        "/assets/2Studio/GOOSE-118.JPG",
+        "/assets/rooms/GOOSE-73.JPG",
+        "/assets/rooms/GOOSE-77.JPG"
       ]
     }
   };

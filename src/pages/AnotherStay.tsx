@@ -224,50 +224,50 @@ const AnotherStay = () => {
   const getRoomImages = (roomId: string) => {
     const imageMap: { [key: string]: string[] } = {
       'quick-stay': [
-        '/src/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.24.jpeg',
-        '/src/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.25.jpeg',
-        '/src/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.26.jpeg'
+        '/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.24.jpeg',
+        '/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.25.jpeg',
+        '/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.26.jpeg'
       ],
       'compact-standard': [
-        '/src/assets/2Studio/GOOSE-74.JPG',
-        '/src/assets/2Studio/GOOSE-118.JPG'
+        '/assets/2Studio/GOOSE-74.JPG',
+        '/assets/2Studio/GOOSE-118.JPG'
       ],
       'king-twin': [
-        '/src/assets/3Suite/GOOSE-100.JPG',
-        '/src/assets/3Suite/GOOSE-105.JPG',
-        '/src/assets/rooms/GOOSE-106.JPG'
+        '/assets/3Suite/GOOSE-100.JPG',
+        '/assets/3Suite/GOOSE-105.JPG',
+        '/assets/rooms/GOOSE-106.JPG'
       ],
       'family-room': [
-        '/src/assets/3Suite/GOOSE-100.JPG',
-        '/src/assets/rooms/GOOSE-108.JPG',
-        '/src/assets/rooms/GOOSE-110.JPG'
+        '/assets/3Suite/GOOSE-100.JPG',
+        '/assets/rooms/GOOSE-108.JPG',
+        '/assets/rooms/GOOSE-110.JPG'
       ],
       'flat-16': [
-        '/src/assets/rooms/GOOSE-73.JPG',
-        '/src/assets/rooms/GOOSE-77.JPG',
-        '/src/assets/rooms/GOOSE-86.JPG'
+        '/assets/rooms/GOOSE-73.JPG',
+        '/assets/rooms/GOOSE-77.JPG',
+        '/assets/rooms/GOOSE-86.JPG'
       ],
       'flat-17': [
-        '/src/assets/rooms/GOOSE-73.JPG',
-        '/src/assets/rooms/GOOSE-108.JPG',
-        '/src/assets/rooms/GOOSE-110.JPG'
+        '/assets/rooms/GOOSE-73.JPG',
+        '/assets/rooms/GOOSE-108.JPG',
+        '/assets/rooms/GOOSE-110.JPG'
       ],
       'flat-18': [
-        '/src/assets/rooms/GOOSE-106.JPG',
-        '/src/assets/rooms/GOOSE-108.JPG',
-        '/src/assets/rooms/GOOSE-77.JPG'
+        '/assets/rooms/GOOSE-106.JPG',
+        '/assets/rooms/GOOSE-108.JPG',
+        '/assets/rooms/GOOSE-77.JPG'
       ],
       'flat-19': [
-        '/src/assets/2Studio/GOOSE-74.JPG',
-        '/src/assets/2Studio/GOOSE-118.JPG'
+        '/assets/2Studio/GOOSE-74.JPG',
+        '/assets/2Studio/GOOSE-118.JPG'
       ],
       'conference-suite': [
-        '/src/assets/rooms/GOOSE-110.JPG',
-        '/src/assets/rooms/GOOSE-73.JPG',
-        '/src/assets/rooms/GOOSE-77.JPG'
+        '/assets/rooms/GOOSE-110.JPG',
+        '/assets/rooms/GOOSE-73.JPG',
+        '/assets/rooms/GOOSE-77.JPG'
       ]
     };
-    return imageMap[roomId] || ['/src/assets/placeholder.svg'];
+    return imageMap[roomId] || ['/assets/placeholder.svg'];
   };
 
   // Prevent body scroll when spotlight is open
