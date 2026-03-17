@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { MapPin, HelpCircle, MessageSquare, Info, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import ProgressiveImage from "../components/ProgressiveImage.tsx";
 
 const More = () => {
   const containerVariants = {
@@ -86,8 +87,13 @@ const More = () => {
               </h2>
               <div className="flex-grow overflow-y-auto scrollbar-hide">
                 <div className="grid grid-cols-4 gap-1">
-                {/* 1Transit folder images */}
-                <img src="/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.24.jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
+                {/* 1Transit folder images - sample with ProgressiveImage */}
+                <ProgressiveImage 
+                  src="/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.24.jpeg" 
+                  alt="Transit area" 
+                  className="rounded" 
+                  aspectRatio="square"
+                />
                 <img src="/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.25 (1).jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
                 <img src="/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.25 (2).jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
                 <img src="/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.25.jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
@@ -113,17 +119,17 @@ const More = () => {
                 <img src="/assets/Cummunal/WhatsApp Image 2026-03-11 at 14.06.20 (3).jpeg" alt="Common area" className="w-full h-8 object-cover rounded" />
                 <img src="/assets/Cummunal/image (2).jpeg" alt="Common area" className="w-full h-8 object-cover rounded" />
                 
-                {/* Root level images */}
-                <img src="/assets/GOOSE-100.JPG" alt="Lodge interior" className="w-full h-8 object-cover rounded" />
-                <img src="/assets/GOOSE-105.JPG" alt="Lodge room" className="w-full h-8 object-cover rounded" />
-                <img src="/assets/GOOSE-106.JPG" alt="Lodge accommodation" className="w-full h-8 object-cover rounded" />
-                <img src="/assets/GOOSE-108.JPG" alt="Lodge facility" className="w-full h-8 object-cover rounded" />
-                <img src="/assets/GOOSE-110.JPG" alt="Lodge view" className="w-full h-8 object-cover rounded" />
-                <img src="/assets/GOOSE-118.JPG" alt="Lodge exterior" className="w-full h-8 object-cover rounded" />
-                <img src="/assets/GOOSE-73.JPG" alt="Lodge interior" className="w-full h-8 object-cover rounded" />
-                <img src="/assets/GOOSE-74.JPG" alt="Lodge room" className="w-full h-8 object-cover rounded" />
-                <img src="/assets/GOOSE-77.JPG" alt="Lodge facility" className="w-full h-8 object-cover rounded" />
-                <img src="/assets/GOOSE-86.JPG" alt="Lodge view" className="w-full h-8 object-cover rounded" />
+                {/* Lodge Interior images from various folders */}
+                <img src="/assets/3Suite/GOOSE-100.JPG" alt="Lodge interior" className="w-full h-8 object-cover rounded" />
+                <img src="/assets/3Suite/GOOSE-105.JPG" alt="Lodge room" className="w-full h-8 object-cover rounded" />
+                <img src="/assets/rooms/GOOSE-106.JPG" alt="Lodge accommodation" className="w-full h-8 object-cover rounded" />
+                <img src="/assets/rooms/GOOSE-108.JPG" alt="Lodge facility" className="w-full h-8 object-cover rounded" />
+                <img src="/assets/rooms/GOOSE-110.JPG" alt="Lodge view" className="w-full h-8 object-cover rounded" />
+                <img src="/assets/2Studio/GOOSE-118.JPG" alt="Lodge exterior" className="w-full h-8 object-cover rounded" />
+                <img src="/assets/rooms/GOOSE-73.JPG" alt="Lodge interior" className="w-full h-8 object-cover rounded" />
+                <img src="/assets/2Studio/GOOSE-74.JPG" alt="Lodge room" className="w-full h-8 object-cover rounded" />
+                <img src="/assets/rooms/GOOSE-77.JPG" alt="Lodge facility" className="w-full h-8 object-cover rounded" />
+                <img src="/assets/rooms/GOOSE-86.JPG" alt="Lodge view" className="w-full h-8 object-cover rounded" />
                 
                 {/* Outside folder images */}
                 <img src="/assets/outside/GOOSE-101.JPG" alt="Lodge surroundings" className="w-full h-8 object-cover rounded" />
