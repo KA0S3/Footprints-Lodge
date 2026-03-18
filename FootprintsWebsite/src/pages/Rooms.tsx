@@ -1,22 +1,21 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Wifi, Droplets, Zap, Lock, Wind, ChevronLeft, ChevronRight, Tv, Bath, ArrowLeft } from "lucide-react";
+import { Wifi, Droplets, Zap, Lock, Wind, ChevronLeft, ChevronRight, Tv, Users } from "lucide-react";
 import { motion } from "framer-motion";
 import AnimatedSection from "@/components/AnimatedSection";
 import { useState } from "react";
 
 const roomImages = [
-  "/assets/2Studio/GOOSE-74.JPG",
-  "/assets/2Studio/GOOSE-118.JPG"
+  "/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.24.jpeg",
+  "/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.25.jpeg"
 ];
 
 const amenities = [
-  { icon: Wifi, label: "Fast fibre Wi-Fi" },
-  { icon: Tv, label: "16\" flat-screen entertainment" },
-  { icon: Droplets, label: "High-flow rain shower" },
-  { icon: Wind, label: "Air conditioning" },
+  { icon: Wifi, label: "Universal plug sockets with integrated chargers" },
+  { icon: Droplets, label: "High-flow shower" },
   { icon: Zap, label: "Backup water & power" },
   { icon: Lock, label: "Instant code check-in" },
+  { icon: Users, label: "Private external entrance" },
 ];
 
 const ImageCarousel = () => {
@@ -34,7 +33,7 @@ const ImageCarousel = () => {
     <div className="relative w-full aspect-[4/3] overflow-hidden rounded-lg">
       <img
         src={roomImages[activeImage]}
-        alt="Compact Room"
+        alt="Quick Stay Room"
         className="w-full h-full object-cover"
       />
       
@@ -71,19 +70,10 @@ const ImageCarousel = () => {
   );
 };
 
-const Studio = () => {
+const Rooms = () => {
   return (
     <article className="container py-16">
       <div className="max-w-6xl mx-auto">
-        {/* Back Button */}
-        <AnimatedSection>
-          <Button variant="ghost" asChild className="mb-6">
-            <Link to="/book" className="flex items-center gap-2">
-              <ArrowLeft size={20} />
-              Back to room selection
-            </Link>
-          </Button>
-        </AnimatedSection>
         {/* Main Content Section - Image/Heading left, Description/Amenities/Pricing right */}
         <div className="grid lg:grid-cols-2 gap-8 items-start">
           {/* Left Column - Image, Heading and Pricing */}
@@ -93,17 +83,17 @@ const Studio = () => {
             </AnimatedSection>
             <AnimatedSection>
               <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
-                <h1 className="font-display text-4xl md:text-5xl font-semibold">Compact</h1>
+                <h1 className="font-display text-4xl md:text-5xl font-semibold">Quick Stay</h1>
                 <div className="border-t sm:border-t-0 sm:pt-0 pt-4">
                   <div className="mb-4">
-                    <span className="text-3xl font-bold">R900</span>
+                    <span className="text-3xl font-bold">R800</span>
                     <span className="text-muted-foreground"> / night</span>
                   </div>
                   <p className="text-sm font-medium text-primary mb-4">
                     Sleeps 2 guests
                   </p>
                   <Button variant="hero" size="lg" asChild className="w-full sm:w-auto">
-                    <Link to="/book">Book Your Stay</Link>
+                    <a href="https://book.nightsbridge.com/11584?bbrtid=22" target="_blank" rel="noopener noreferrer">Book Your Stay</a>
                   </Button>
                 </div>
               </div>
@@ -113,33 +103,33 @@ const Studio = () => {
           {/* Right Column - Room Information */}
           <AnimatedSection className="space-y-6">
             <div className="space-y-4">
-              <h3 className="font-semibold text-lg mb-2">The Standard</h3>
+              <h3 className="font-semibold text-lg mb-2">The Essentials</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Our standard accommodation offering enhanced comfort with a Queen bed, TV, and en-suite bathroom. Perfect for travelers seeking reliable quality without unnecessary extras.
+                Optimized for speed and no-contact efficiency, this minimalist space provides just the essentials - a comfortable bed and private bathroom for travelers who value simplicity and convenience.
               </p>
             </div>
 
-            {/* Enhanced Features */}
+            {/* Essential Features */}
             <div>
               <h3 className="font-semibold text-lg mb-4">Key Features</h3>
               
               {/* Feature Blocks Grid */}
               <div className="grid grid-cols-2 gap-4 mb-6">
                 <div className="bg-card border border-border/50 rounded-lg p-4 text-center">
-                  <h4 className="font-medium text-sm mb-2">Queen Comfort</h4>
-                  <p className="text-xs text-muted-foreground">Premium Queen bed with quality linens for restful sleep.</p>
+                  <h4 className="font-medium text-sm mb-2">Speed Focus</h4>
+                  <p className="text-xs text-muted-foreground">No-contact check-in and streamlined essentials for quick turnaround.</p>
                 </div>
                 <div className="bg-card border border-border/50 rounded-lg p-4 text-center">
-                  <h4 className="font-medium text-sm mb-2">Entertainment</h4>
-                  <p className="text-xs text-muted-foreground">16\" flat-screen TV with fast fibre Wi-Fi connectivity.</p>
+                  <h4 className="font-medium text-sm mb-2">Core Comfort</h4>
+                  <p className="text-xs text-muted-foreground">Premium mattress and high-flow shower for essential comfort.</p>
                 </div>
                 <div className="bg-card border border-border/50 rounded-lg p-4 text-center">
-                  <h4 className="font-medium text-sm mb-2">Climate Control</h4>
-                  <p className="text-xs text-muted-foreground">Air conditioning for personalized comfort.</p>
+                  <h4 className="font-medium text-sm mb-2">Tech-Ready</h4>
+                  <p className="text-xs text-muted-foreground">Universal plug sockets with integrated high-speed chargers.</p>
                 </div>
                 <div className="bg-card border border-border/50 rounded-lg p-4 text-center">
-                  <h4 className="font-medium text-sm mb-2">Modern En-suite</h4>
-                  <p className="text-xs text-muted-foreground">Private bathroom with high-flow rain shower.</p>
+                  <h4 className="font-medium text-sm mb-2">Private Access</h4>
+                  <p className="text-xs text-muted-foreground">Private external entrance for enhanced security and convenience.</p>
                 </div>
               </div>
               
@@ -157,7 +147,7 @@ const Studio = () => {
               </div>
               
               <p className="text-xs text-muted-foreground mt-4 italic">
-                <strong>Note:</strong> Queen bed, TV, and en-suite bathroom. No kettle/tea facilities for streamlined simplicity.
+                <strong>Note:</strong> Bed and bathroom only. Speed-focused minimalist design with no-contact efficiency.
               </p>
             </div>
           </AnimatedSection>
@@ -167,4 +157,4 @@ const Studio = () => {
   );
 };
 
-export default Studio;
+export default Rooms;

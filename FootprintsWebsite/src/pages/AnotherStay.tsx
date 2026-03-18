@@ -6,17 +6,18 @@ import { useState, useEffect } from "react";
 
 interface RoomInventory {
   id: string;
-  roomNumber: string;
   roomName: string;
+  category: string;
+  size: string;
+  maxOccupancy: string;
   bedConfiguration: string;
   price: string;
-  amenities: {
+  description: string;
+  keyAmenities: {
     icon: any;
     label: string;
   }[];
-  route: string;
   tag?: string;
-  section?: string;
 }
 
 interface ParsedRoomConfig {
@@ -24,6 +25,35 @@ interface ParsedRoomConfig {
   bedConfiguration: string;
   amenities: string[];
 }
+
+interface AmenityIcon {
+  icon: any;
+  label: string;
+}
+
+const getAmenityIcon = (amenityText: string): AmenityIcon => {
+  const text = amenityText.toLowerCase();
+  if (text.includes('tv') || text.includes('dstv') || text.includes('satellite')) return { icon: Tv, label: amenityText };
+  if (text.includes('aircon') || text.includes('air')) return { icon: Wind, label: amenityText };
+  if (text.includes('kettle') || text.includes('coffee') || text.includes('tea')) return { icon: Coffee, label: amenityText };
+  if (text.includes('bath') || text.includes('en-suite') || text.includes('shower')) return { icon: Bath, label: amenityText };
+  if (text.includes('desk')) return { icon: Wifi, label: amenityText };
+  if (text.includes('hairdryer')) return { icon: Wifi, label: amenityText };
+  if (text.includes('safe')) return { icon: Wifi, label: amenityText };
+  if (text.includes('refrigerator') || text.includes('fridge')) return { icon: Wifi, label: amenityText };
+  if (text.includes('iron')) return { icon: Wifi, label: amenityText };
+  if (text.includes('microwave')) return { icon: Wifi, label: amenityText };
+  if (text.includes('blanket')) return { icon: Wifi, label: amenityText };
+  if (text.includes('pillow')) return { icon: Wifi, label: amenityText };
+  if (text.includes('fan')) return { icon: Wind, label: amenityText };
+  if (text.includes('convert') || text.includes('voltage')) return { icon: Wifi, label: amenityText };
+  if (text.includes('towel')) return { icon: Bath, label: amenityText };
+  if (text.includes('non-smoking')) return { icon: Wifi, label: amenityText };
+  if (text.includes('sitting') || text.includes('couch') || text.includes('chairs')) return { icon: Users, label: amenityText };
+  if (text.includes('lounge')) return { icon: Users, label: amenityText };
+  if (text.includes('bedroom')) return { icon: Bed, label: amenityText };
+  return { icon: Wifi, label: amenityText };
+};
 
 const parseBedConfiguration = (config: string): ParsedRoomConfig => {
   // Extract max occupancy (e.g., "Sleeps 1-2", "Sleeps 2-4", "Sleeps 2")
@@ -54,147 +84,111 @@ const AnotherStay = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [selectedRowBounds, setSelectedRowBounds] = useState<DOMRect | null>(null);
 
+  // External booking links mapping
+  const bookingLinks = {
+    "quick-stay": "https://book.nightsbridge.com/11584?bbrtid=22",
+    "compact-queen": "https://book.nightsbridge.com/11584?bbrtid=20",
+    "comfy-king-twin": "https://book.nightsbridge.com/11584?bbrtid=3",
+    "family-2-1": "https://book.nightsbridge.com/11584?bbrtid=16",
+    "family-2-2": "https://book.nightsbridge.com/11584?bbrtid=21"
+  };
+
   const roomInventory: RoomInventory[] = [
-    // Essential Stays Section
+    // Category A: Quick Stay (Studio)
     {
       id: "quick-stay",
-      roomNumber: "",
       roomName: "Quick Stay",
-      bedConfiguration: "Sleeps 1-2 • Various (Newly Renovated)",
+      category: "Studio",
+      size: "20m²",
+      maxOccupancy: "2 Adults",
+      bedConfiguration: "Sleeps 1-2 • Compact design • Workspace • Private entrance",
       price: "R800",
-      amenities: [
-        { icon: Bath, label: "En-suite Bathroom" }
+      description: "A compact, minimalist guest room perfect for short stays. Features modern finishes, a practical design, a dedicated workspace, and a private ground-floor entrance.",
+      keyAmenities: [
+        { icon: Wind, label: "Ceiling fan" },
+        { icon: Wifi, label: "Desk" },
+        { icon: Wifi, label: "Converters/Voltage adaptors" },
+        { icon: Bath, label: "Shower only" },
+        { icon: Bath, label: "Towels" }
       ],
-      route: "/book",
-      tag: "No-contact",
-      section: "essential"
+      tag: "No-contact"
     },
+    
+    // Category B: Compact Queen (Standard)
     {
-      id: "compact-standard",
-      roomNumber: "",
-      roomName: "Compact (Standard)",
-      bedConfiguration: "Sleeps 2 • Queen Bed • TV • En-suite",
+      id: "compact-queen",
+      roomName: "Compact Queen",
+      category: "Standard",
+      size: "22m²",
+      maxOccupancy: "2 Adults",
+      bedConfiguration: "Sleeps 2 • Queen Bed • White linen • Tranquil atmosphere",
       price: "R950",
-      amenities: [
-        { icon: Tv, label: "Smart TV" },
-        { icon: Bath, label: "En-suite Bathroom" }
-      ],
-      route: "/book",
-      section: "essential"
+      description: "A minimalistic, standard queen room featuring white linen and a tranquil atmosphere. Designed for solo travelers or couples who prioritize a clean, functional space.",
+      keyAmenities: [
+        { icon: Bed, label: "Queen Bed" },
+        { icon: Tv, label: "DSTV/Satellite TV" },
+        { icon: Wifi, label: "Non-smoking" },
+        { icon: Wifi, label: "Safe" },
+        { icon: Bath, label: "Shower only" }
+      ]
     },
     
-    // Standard & Premium Rooms Section
+    // Category C: Comfy King / Twin (Business)
     {
-      id: "king-twin",
-      roomNumber: "",
-      roomName: "King / Twin",
-      bedConfiguration: "Sleeps 2 • King or 2 Twin Beds • TV • Aircon • Kettle • En-suite",
+      id: "comfy-king-twin",
+      roomName: "Comfy King / Twin",
+      category: "Business",
+      size: "30m²",
+      maxOccupancy: "2 Adults",
+      bedConfiguration: "Sleeps 2 • King or Twin beds • Sitting area • Premium environment",
       price: "R1200",
-      amenities: [
-        { icon: Tv, label: "Smart TV" },
-        { icon: Wind, label: "Aircon" },
-        { icon: Coffee, label: "Kettle with tea/coffee" },
-        { icon: Bath, label: "En-suite Bathroom" }
-      ],
-      route: "/suite"
+      description: "A spacious, business-class room offering more room than a standard stay. Includes a versatile King or Twin bed configuration, comfortable seating for relaxation, and air-conditioning.",
+      keyAmenities: [
+        { icon: Wind, label: "Air-con" },
+        { icon: Users, label: "Sitting area" },
+        { icon: Coffee, label: "Coffee/Tea facilities" },
+        { icon: Wifi, label: "Desk" },
+        { icon: Wifi, label: "Hairdryer" }
+      ]
     },
+    
+    // Category D: Family 2+1 (Family Room)
     {
-      id: "family-room",
-      roomNumber: "",
-      roomName: "Family Room",
-      bedConfiguration: "Sleeps 2-4 • Various Configurations • TV • Aircon • Kettle • En-suite • Large Space",
+      id: "family-2-1",
+      roomName: "Family 2+1",
+      category: "Family Room",
+      size: "36m²",
+      maxOccupancy: "3 Guests",
+      bedConfiguration: "Sleeps 3 • King bed + Single bed • Private en-suite • Climate control",
       price: "R1500",
-      amenities: [
-        { icon: Tv, label: "Smart TV" },
-        { icon: Wind, label: "Aircon" },
-        { icon: Coffee, label: "Kettle with tea/coffee" },
-        { icon: Bath, label: "En-suite Bathroom" },
-        { icon: Users, label: "Much larger floor plan" }
-      ],
-      route: "/family"
+      description: "A comfortable family-oriented room able to accommodate up to three guests. Features a King bed and one Single bed with a layout designed to balance shared space with individual comfort.",
+      keyAmenities: [
+        { icon: Wind, label: "Air-con" },
+        { icon: Tv, label: "DSTV" },
+        { icon: Wifi, label: "Refrigerator" },
+        { icon: Wifi, label: "Iron/Ironing board" },
+        { icon: Bath, label: "Shower only" }
+      ]
     },
     
-    // The Flat Units Section
+    // Category E: Family 2+2 (Family Suite)
     {
-      id: "flat-16",
-      roomNumber: "",
-      roomName: "The Flat: Unit 16",
-      bedConfiguration: "Sleeps 2-4 • King + 1 Single OR 3 Singles • TV • Aircon • Kettle • En-suite • Family Layout",
-      price: "R1600",
-      amenities: [
-        { icon: Tv, label: "Smart TV" },
-        { icon: Wind, label: "Aircon" },
-        { icon: Coffee, label: "Kettle with tea/coffee" },
-        { icon: Bath, label: "En-suite Bathroom" },
-        { icon: Users, label: "Family-style layout" }
-      ],
-      route: "/flat",
-      section: "the-flat"
-    },
-    {
-      id: "flat-17",
-      roomNumber: "",
-      roomName: "The Flat: Unit 17",
-      bedConfiguration: "Sleeps 2-6 • King + 2 Singles OR 4 Singles • TV • Aircon • Kettle • En-suite • Large Family Layout",
+      id: "family-2-2",
+      roomName: "Family 2+2",
+      category: "Family Suite",
+      size: "48m²",
+      maxOccupancy: "4 Guests",
+      bedConfiguration: "Sleeps 4 • 2 Bedrooms (King/Twin configs) • Shared lounge • Private bathroom",
       price: "R1900",
-      amenities: [
-        { icon: Tv, label: "Smart TV" },
-        { icon: Wind, label: "Aircon" },
-        { icon: Coffee, label: "Kettle with tea/coffee" },
-        { icon: Bath, label: "En-suite Bathroom" },
-        { icon: Users, label: "Large family-style layout" }
-      ],
-      route: "/flat",
-      section: "the-flat"
-    },
-    {
-      id: "flat-18",
-      roomNumber: "",
-      roomName: "The Flat: Unit 18",
-      bedConfiguration: "Sleeps 2 • King or 2 Twin Beds • TV • Aircon • Kettle • En-suite",
-      price: "R1300",
-      amenities: [
-        { icon: Tv, label: "Smart TV" },
-        { icon: Wind, label: "Aircon" },
-        { icon: Coffee, label: "Kettle with tea/coffee" },
-        { icon: Bath, label: "En-suite Bathroom" }
-      ],
-      route: "/flat",
-      section: "the-flat"
-    },
-    {
-      id: "flat-19",
-      roomNumber: "",
-      roomName: "The Flat: Unit 19",
-      bedConfiguration: "Sleeps 2 • Double Bed • TV • Aircon • Kettle • En-suite • Compact Size",
-      price: "R1100",
-      amenities: [
-        { icon: Tv, label: "Smart TV" },
-        { icon: Wind, label: "Aircon" },
-        { icon: Coffee, label: "Kettle with tea/coffee" },
-        { icon: Bath, label: "En-suite Bathroom" }
-      ],
-      route: "/flat",
-      section: "the-flat"
-    },
-    
-    // Conference Suite Section
-    {
-      id: "conference-suite",
-      roomNumber: "",
-      roomName: "Conference Suite",
-      bedConfiguration: "Sleeps 4 • 2 Bedrooms (King/Twin configs) • TV • Aircon • Kettle • Large Lounge • Dual Bathrooms",
-      price: "R2200",
-      amenities: [
-        { icon: Tv, label: "Smart TV" },
-        { icon: Wind, label: "Aircon" },
-        { icon: Coffee, label: "Kettle with tea/coffee" },
-        { icon: Bath, label: "En-suite bathroom with two individual toilets" },
-        { icon: Users, label: "Very large lounge" }
-      ],
-      route: "/conference",
-      tag: "Versatile Space",
-      section: "specialized"
+      description: "Our premier Family Suite features two separate rooms that can be configured with twin or king beds. Includes a shared private bathroom and a cozy lounge area for family bonding.",
+      keyAmenities: [
+        { icon: Bed, label: "2 Bedrooms" },
+        { icon: Users, label: "Shared Lounge" },
+        { icon: Wifi, label: "Microwave" },
+        { icon: Coffee, label: "Coffee/Tea facilities" },
+        { icon: Wifi, label: "Electric blanket" },
+        { icon: Wifi, label: "Non-feather pillows" }
+      ]
     }
   ];
 
@@ -214,13 +208,17 @@ const AnotherStay = () => {
   };
 
   const handleConfirmSelection = () => {
+    // Open external booking link in new tab
     if (selectedRoom) {
-      navigate(selectedRoom.route);
-      closeSpotlight();
+      const bookingLink = bookingLinks[selectedRoom.id as keyof typeof bookingLinks];
+      if (bookingLink) {
+        window.open(bookingLink, '_blank');
+      }
     }
+    closeSpotlight();
   };
 
-  // Mock room images - in a real app, these would come from room data or API
+  // Mock room images - keeping existing paths
   const getRoomImages = (roomId: string) => {
     const imageMap: { [key: string]: string[] } = {
       'quick-stay': [
@@ -228,43 +226,24 @@ const AnotherStay = () => {
         '/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.25.jpeg',
         '/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.26.jpeg'
       ],
-      'compact-standard': [
+      'compact-queen': [
         '/assets/2Studio/GOOSE-74.JPG',
         '/assets/2Studio/GOOSE-118.JPG'
       ],
-      'king-twin': [
+      'comfy-king-twin': [
         '/assets/3Suite/GOOSE-100.JPG',
         '/assets/3Suite/GOOSE-105.JPG',
         '/assets/rooms/GOOSE-106.JPG'
       ],
-      'family-room': [
+      'family-2-1': [
         '/assets/3Suite/GOOSE-100.JPG',
         '/assets/rooms/GOOSE-108.JPG',
         '/assets/rooms/GOOSE-110.JPG'
       ],
-      'flat-16': [
+      'family-2-2': [
         '/assets/rooms/GOOSE-73.JPG',
         '/assets/rooms/GOOSE-77.JPG',
         '/assets/rooms/GOOSE-86.JPG'
-      ],
-      'flat-17': [
-        '/assets/rooms/GOOSE-73.JPG',
-        '/assets/rooms/GOOSE-108.JPG',
-        '/assets/rooms/GOOSE-110.JPG'
-      ],
-      'flat-18': [
-        '/assets/rooms/GOOSE-106.JPG',
-        '/assets/rooms/GOOSE-108.JPG',
-        '/assets/rooms/GOOSE-77.JPG'
-      ],
-      'flat-19': [
-        '/assets/2Studio/GOOSE-74.JPG',
-        '/assets/2Studio/GOOSE-118.JPG'
-      ],
-      'conference-suite': [
-        '/assets/rooms/GOOSE-110.JPG',
-        '/assets/rooms/GOOSE-73.JPG',
-        '/assets/rooms/GOOSE-77.JPG'
       ]
     };
     return imageMap[roomId] || ['/assets/placeholder.svg'];
@@ -329,9 +308,11 @@ const AnotherStay = () => {
                 <div className="max-h-[700px] overflow-y-auto">
                   {/* Table Header */}
                   <div className="sticky top-0 bg-white/90 backdrop-blur-sm border-b border-slate-200 px-4 py-2 z-10">
-                    <div className="grid grid-cols-10 gap-2 text-xs font-medium text-slate-500 uppercase tracking-wider">
-                      <div className="col-span-4">Room</div>
-                      <div className="col-span-4">Configuration</div>
+                    <div className="grid grid-cols-12 gap-2 text-xs font-medium text-slate-500 uppercase tracking-wider">
+                      <div className="col-span-3">Room</div>
+                      <div className="col-span-2">Size</div>
+                      <div className="col-span-2">Occupancy</div>
+                      <div className="col-span-3">Configuration</div>
                       <div className="col-span-2 text-center">Price</div>
                     </div>
                   </div>
@@ -356,71 +337,67 @@ const AnotherStay = () => {
                         }`}
                         onClick={(event) => handleRoomSelect(room, event)}
                       >
-                        <div className="grid grid-cols-10 gap-2 px-4 py-2 items-center">
-                          <div className="col-span-4">
-                            <div className="flex items-center gap-2">
-                              {room.tag && (
-                                <span className="bg-gradient-to-r from-amber-500 to-amber-600 text-white text-[8px] px-1.5 py-0.5 rounded-full font-medium whitespace-nowrap">
-                                  {room.tag}
-                                </span>
-                              )}
-                              <div className="flex items-center gap-1">
+                        <div className="grid grid-cols-12 gap-2 px-4 py-3 items-center">
+                          <div className="col-span-3">
+                            <div className="flex flex-col gap-1">
+                              <div className="flex items-center gap-2">
+                                {room.tag && (
+                                  <span className="bg-gradient-to-r from-amber-500 to-amber-600 text-white text-[8px] px-1.5 py-0.5 rounded-full font-medium whitespace-nowrap">
+                                    {room.tag}
+                                  </span>
+                                )}
                                 <span className="font-display text-sm font-semibold text-slate-900">
                                   {room.roomName}
                                 </span>
-                                {parsedConfig.maxOccupancy && (
-                                  <>
-                                    <span className="text-slate-300">•</span>
-                                    <div className="flex items-center gap-0.5">
-                                      <Users size={9} className="text-slate-400" />
-                                      <span className="text-[9px] text-slate-500 font-medium">
-                                        {parsedConfig.maxOccupancy}
-                                      </span>
-                                    </div>
-                                  </>
-                                )}
                               </div>
+                              <span className="text-[10px] text-slate-500 font-medium">
+                                {room.category}
+                              </span>
                             </div>
                           </div>
-                          <div className="col-span-4">
-                            <div className="flex items-start gap-2">
+                          <div className="col-span-2">
+                            <span className="text-xs text-slate-600 font-medium">
+                              {room.size}
+                            </span>
+                          </div>
+                          <div className="col-span-2">
+                            <div className="flex items-center gap-1">
+                              <Users size={10} className="text-slate-400" />
+                              <span className="text-xs text-slate-600 font-medium">
+                                {room.maxOccupancy}
+                              </span>
+                            </div>
+                          </div>
+                          <div className="col-span-3">
+                            <div className="space-y-1">
                               {parsedConfig.bedConfiguration && (
                                 <div className="flex items-center gap-1">
-                                  <Bed size={10} className="text-slate-400 flex-shrink-0 mt-0.5" />
+                                  <Bed size={9} className="text-slate-400 flex-shrink-0" />
                                   <span className="text-xs text-slate-600">
-                                    {parsedConfig.bedConfiguration}
+                                    {parsedConfig.bedConfiguration.length > 25 ? parsedConfig.bedConfiguration.substring(0, 25) + '...' : parsedConfig.bedConfiguration}
                                   </span>
                                 </div>
                               )}
                               {parsedConfig.amenities.length > 0 && (
-                                <div className="flex flex-wrap gap-0.5 mt-0.5">
-                                  {parsedConfig.amenities.slice(0, 2).map((amenity, amenityIndex) => {
-                                    const getAmenityIcon = (amenityText: string) => {
-                                      const text = amenityText.toLowerCase();
-                                      if (text.includes('tv')) return Tv;
-                                      if (text.includes('aircon') || text.includes('air')) return Wind;
-                                      if (text.includes('kettle') || text.includes('coffee') || text.includes('tea')) return Coffee;
-                                      if (text.includes('bath') || text.includes('en-suite')) return Bath;
-                                      return Wifi;
-                                    };
-                                    
-                                    const Icon = getAmenityIcon(amenity);
+                                <div className="flex flex-wrap gap-0.5">
+                                  {parsedConfig.amenities.slice(0, 1).map((amenity, amenityIndex) => {
+                                    const Icon = getAmenityIcon(amenity).icon;
                                     
                                     return (
                                       <div 
                                         key={amenityIndex} 
-                                        className="flex items-center gap-0.5 px-1.5 py-0.5 bg-slate-50 rounded border border-slate-200/30"
+                                        className="flex items-center gap-0.5 px-1 py-0.5 bg-slate-50 rounded border border-slate-200/30"
                                       >
-                                        <Icon size={7} className="text-slate-400" />
-                                        <span className="text-[8px] text-slate-500 font-medium leading-tight">
-                                          {amenity.length > 12 ? amenity.substring(0, 12) + '...' : amenity}
+                                        <Icon size={6} className="text-slate-400" />
+                                        <span className="text-[7px] text-slate-500 font-medium leading-tight">
+                                          {amenity.length > 15 ? amenity.substring(0, 15) + '...' : amenity}
                                         </span>
                                       </div>
                                     );
                                   })}
-                                  {parsedConfig.amenities.length > 2 && (
-                                    <span className="text-[8px] text-slate-400 font-medium px-1.5 py-0.5 leading-tight">
-                                      +{parsedConfig.amenities.length - 2}
+                                  {parsedConfig.amenities.length > 1 && (
+                                    <span className="text-[7px] text-slate-400 font-medium px-1 py-0.5 leading-tight">
+                                      +{parsedConfig.amenities.length - 1}
                                     </span>
                                   )}
                                 </div>
@@ -448,7 +425,7 @@ const AnotherStay = () => {
                 className="mt-4 text-center"
               >
                 <p className="text-xs text-slate-400">
-                  All rooms include instant check-in, backup utilities & Wi-Fi
+                  All rooms include modern amenities and are designed for your comfort
                 </p>
               </motion.div>
             </div>
@@ -468,13 +445,13 @@ const AnotherStay = () => {
                 </h2>
                 <div className="space-y-3 font-serif text-base text-slate-700 leading-relaxed">
                   <p>
-                    Nestled in Kempton Park, we offer a tranquil retreat where modern comfort meets thoughtful hospitality.
+                    Discover our carefully curated room categories designed to meet every traveler's needs, from business professionals to families seeking comfort and convenience.
                   </p>
                   <p>
-                    Each space is meticulously designed to provide not just accommodation, but an experience—where business travelers find their perfect workspace and leisure guests discover their peaceful sanctuary.
+                    Each room category is thoughtfully designed with specific amenities and configurations to ensure your stay is both comfortable and tailored to your requirements.
                   </p>
                   <p>
-                    From essential Quick Stay rooms to versatile adaptive spaces, every corner reflects our commitment to your comfort and convenience.
+                    From compact studios ideal for short stays to spacious family suites, we offer the perfect accommodation solution for your visit to Gauteng.
                   </p>
                 </div>
                 <div className="mt-6">
@@ -611,6 +588,27 @@ const AnotherStay = () => {
                 {/* Room Details */}
                 <div className="lg:w-3/5 p-5 overflow-y-auto bg-gradient-to-b from-white to-slate-50">
                   <div className="space-y-5">
+                    {/* Description */}
+                    <div>
+                      <h3 className="font-semibold text-base text-slate-900 mb-2 flex items-center gap-2">
+                        <div className="w-1 h-4 bg-primary rounded-full"></div>
+                        Description
+                      </h3>
+                      <p className="text-slate-600 text-sm leading-relaxed">{selectedRoom.description}</p>
+                    </div>
+                    
+                    {/* Room Info */}
+                    <div className="grid grid-cols-2 gap-3">
+                      <div className="text-center p-3 bg-white/50 backdrop-blur-sm rounded-lg border border-slate-200/50">
+                        <div className="text-xs text-slate-500 font-medium mb-1">Size</div>
+                        <div className="font-semibold text-sm text-slate-900">{selectedRoom.size}</div>
+                      </div>
+                      <div className="text-center p-3 bg-white/50 backdrop-blur-sm rounded-lg border border-slate-200/50">
+                        <div className="text-xs text-slate-500 font-medium mb-1">Occupancy</div>
+                        <div className="font-semibold text-sm text-slate-900">{selectedRoom.maxOccupancy}</div>
+                      </div>
+                    </div>
+                    
                     {/* Configuration */}
                     <div>
                       <h3 className="font-semibold text-base text-slate-900 mb-2 flex items-center gap-2">
@@ -620,14 +618,14 @@ const AnotherStay = () => {
                       <p className="text-slate-600 text-sm leading-relaxed">{selectedRoom.bedConfiguration}</p>
                     </div>
                     
-                    {/* Amenities */}
+                    {/* Key Amenities */}
                     <div>
                       <h3 className="font-semibold text-base text-slate-900 mb-3 flex items-center gap-2">
                         <div className="w-1 h-4 bg-primary rounded-full"></div>
-                        Amenities
+                        Key Amenities
                       </h3>
                       <div className="grid grid-cols-2 gap-2">
-                        {selectedRoom.amenities.map((amenity, index) => {
+                        {selectedRoom.keyAmenities.map((amenity, index) => {
                           const Icon = amenity.icon;
                           return (
                             <div key={index} className="flex items-center gap-2 text-slate-700 p-2 rounded-lg bg-white/50 backdrop-blur-sm border border-slate-200/50">
@@ -652,7 +650,7 @@ const AnotherStay = () => {
                           onClick={handleConfirmSelection}
                           className="bg-primary hover:bg-primary/90 text-white px-6 py-2 h-auto text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105"
                         >
-                          Confirm Selection
+                          Book
                         </Button>
                       </div>
                     </div>

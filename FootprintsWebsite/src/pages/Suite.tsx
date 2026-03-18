@@ -1,21 +1,22 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Wifi, Droplets, Zap, Lock, Wind, ChevronLeft, ChevronRight, Tv, Users } from "lucide-react";
+import { Wifi, Droplets, Zap, Lock, Wind, ChevronLeft, ChevronRight, Tv, Coffee, Refrigerator, Bath, ArrowLeft, Users } from "lucide-react";
 import { motion } from "framer-motion";
 import AnimatedSection from "@/components/AnimatedSection";
 import { useState } from "react";
 
 const roomImages = [
-  "/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.24.jpeg",
-  "/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.25.jpeg"
+  "/assets/3Suite/GOOSE-100.JPG",
+  "/assets/3Suite/GOOSE-105.JPG"
 ];
 
 const amenities = [
-  { icon: Wifi, label: "Universal plug sockets with integrated chargers" },
-  { icon: Droplets, label: "High-flow shower" },
-  { icon: Zap, label: "Backup water & power" },
+  { icon: Tv, label: "Smart TV" },
+  { icon: Wind, label: "Aircon" },
+  { icon: Coffee, label: "Kettle with tea/coffee" },
+  { icon: Bath, label: "En-suite Bathroom" },
+  { icon: Wifi, label: "High-speed fibre Wi-Fi" },
   { icon: Lock, label: "Instant code check-in" },
-  { icon: Users, label: "Private external entrance" },
 ];
 
 const ImageCarousel = () => {
@@ -33,7 +34,7 @@ const ImageCarousel = () => {
     <div className="relative w-full aspect-[4/3] overflow-hidden rounded-lg">
       <img
         src={roomImages[activeImage]}
-        alt="Quick Stay Room"
+        alt="King/Twin Room"
         className="w-full h-full object-cover"
       />
       
@@ -70,10 +71,19 @@ const ImageCarousel = () => {
   );
 };
 
-const Rooms = () => {
+const Suite = () => {
   return (
     <article className="container py-16">
       <div className="max-w-6xl mx-auto">
+        {/* Back Button */}
+        <AnimatedSection>
+          <Button variant="ghost" asChild className="mb-6">
+            <Link to="/book" className="flex items-center gap-2">
+              <ArrowLeft size={20} />
+              Back to room selection
+            </Link>
+          </Button>
+        </AnimatedSection>
         {/* Main Content Section - Image/Heading left, Description/Amenities/Pricing right */}
         <div className="grid lg:grid-cols-2 gap-8 items-start">
           {/* Left Column - Image, Heading and Pricing */}
@@ -83,17 +93,17 @@ const Rooms = () => {
             </AnimatedSection>
             <AnimatedSection>
               <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
-                <h1 className="font-display text-4xl md:text-5xl font-semibold">Quick Stay</h1>
+                <h1 className="font-display text-4xl md:text-5xl font-semibold">King/Twin</h1>
                 <div className="border-t sm:border-t-0 sm:pt-0 pt-4">
                   <div className="mb-4">
-                    <span className="text-3xl font-bold">R800</span>
+                    <span className="text-3xl font-bold">R750</span>
                     <span className="text-muted-foreground"> / night</span>
                   </div>
                   <p className="text-sm font-medium text-primary mb-4">
-                    Sleeps 2 guests
+                    King or 2 Twin Beds
                   </p>
                   <Button variant="hero" size="lg" asChild className="w-full sm:w-auto">
-                    <Link to="/book">Book Your Stay</Link>
+                    <a href="https://book.nightsbridge.com/11584?bbrtid=3" target="_blank" rel="noopener noreferrer">Book Your Stay</a>
                   </Button>
                 </div>
               </div>
@@ -103,33 +113,33 @@ const Rooms = () => {
           {/* Right Column - Room Information */}
           <AnimatedSection className="space-y-6">
             <div className="space-y-4">
-              <h3 className="font-semibold text-lg mb-2">The Essentials</h3>
+              <h3 className="font-semibold text-lg mb-2">King / Twin Room</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Optimized for speed and no-contact efficiency, this minimalist space provides just the essentials - a comfortable bed and private bathroom for travelers who value simplicity and convenience.
+                Our flexible King/Twin room offers premium amenities with the choice of a King bed or 2 Twin beds. Perfect for couples or friends traveling together, featuring Smart TV, air conditioning, and kettle facilities.
               </p>
             </div>
 
-            {/* Essential Features */}
+            {/* Premium Features */}
             <div>
-              <h3 className="font-semibold text-lg mb-4">Key Features</h3>
+              <h3 className="font-semibold text-lg mb-4">Room Features</h3>
               
               {/* Feature Blocks Grid */}
               <div className="grid grid-cols-2 gap-4 mb-6">
                 <div className="bg-card border border-border/50 rounded-lg p-4 text-center">
-                  <h4 className="font-medium text-sm mb-2">Speed Focus</h4>
-                  <p className="text-xs text-muted-foreground">No-contact check-in and streamlined essentials for quick turnaround.</p>
+                  <h4 className="font-medium text-sm mb-2">Flexible Bedding</h4>
+                  <p className="text-xs text-muted-foreground">King bed or 2 Twin beds configuration available.</p>
                 </div>
                 <div className="bg-card border border-border/50 rounded-lg p-4 text-center">
-                  <h4 className="font-medium text-sm mb-2">Core Comfort</h4>
-                  <p className="text-xs text-muted-foreground">Premium mattress and high-flow shower for essential comfort.</p>
+                  <h4 className="font-medium text-sm mb-2">Entertainment</h4>
+                  <p className="text-xs text-muted-foreground">Smart TV with high-speed Wi-Fi connectivity.</p>
                 </div>
                 <div className="bg-card border border-border/50 rounded-lg p-4 text-center">
-                  <h4 className="font-medium text-sm mb-2">Tech-Ready</h4>
-                  <p className="text-xs text-muted-foreground">Universal plug sockets with integrated high-speed chargers.</p>
+                  <h4 className="font-medium text-sm mb-2">Refreshment</h4>
+                  <p className="text-xs text-muted-foreground">Kettle with tea and coffee facilities.</p>
                 </div>
                 <div className="bg-card border border-border/50 rounded-lg p-4 text-center">
-                  <h4 className="font-medium text-sm mb-2">Private Access</h4>
-                  <p className="text-xs text-muted-foreground">Private external entrance for enhanced security and convenience.</p>
+                  <h4 className="font-medium text-sm mb-2">Comfort</h4>
+                  <p className="text-xs text-muted-foreground">Air conditioning and en-suite bathroom.</p>
                 </div>
               </div>
               
@@ -147,7 +157,7 @@ const Rooms = () => {
               </div>
               
               <p className="text-xs text-muted-foreground mt-4 italic">
-                <strong>Note:</strong> Bed and bathroom only. Speed-focused minimalist design with no-contact efficiency.
+                <strong>Note:</strong> Some rooms include a bar fridge. All rooms feature premium amenities with flexible bedding options.
               </p>
             </div>
           </AnimatedSection>
@@ -157,4 +167,4 @@ const Rooms = () => {
   );
 };
 
-export default Rooms;
+export default Suite;

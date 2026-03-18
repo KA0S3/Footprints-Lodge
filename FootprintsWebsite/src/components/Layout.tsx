@@ -1,8 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 const mainLinks = [
   { to: "/book", label: "Book" },
@@ -19,7 +18,6 @@ const allLinks = [{ to: "/", label: "Home" }, ...mainLinks, ...moreLinks];
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
-  const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   
   // Pages where the Book Now button should be hidden
@@ -62,37 +60,16 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             </Button>
           </motion.div>
 
-          <button
-            className="md:hidden p-2 text-foreground"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Toggle menu"
-          >
-            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
-        </div>
-
-        {/* Mobile nav */}
-        <AnimatePresence>
-          {mobileOpen && (
-            <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="md:hidden border-t bg-card overflow-hidden"
+          {/* Mobile CTA Button - replaces burger menu */}
+          <div className="md:hidden">
+            <Link 
+              to={hideBookButton ? "/more" : "/book"}
+              className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium bg-black text-white hover:bg-gray-800 shadow-lg hover:shadow-xl transition-all duration-200 h-9 px-3"
             >
-              <nav className="container flex flex-col gap-1 py-3">
-                <div className="px-3 pt-2">
-                  <Button variant="hero" size="sm" className="w-full" asChild>
-                    <Link to={hideBookButton ? "/more" : "/book"} onClick={() => setMobileOpen(false)}>
-                      {hideBookButton ? "More" : "Book Now"}
-                    </Link>
-                  </Button>
-                </div>
-              </nav>
-            </motion.div>
-          )}
-        </AnimatePresence>
+              {hideBookButton ? "More" : "Book Now"}
+            </Link>
+          </div>
+        </div>
       </motion.header>
 
       <main className="flex-1 overflow-y-auto scrollbar-hide">{children}</main>
