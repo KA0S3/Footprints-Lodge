@@ -1,46 +1,47 @@
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import { MapPin, HelpCircle, MessageSquare, Info, BookOpen } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { MapPin, HelpCircle, MessageSquare, Info, BookOpen, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import ProgressiveImage from "../components/ProgressiveImage.tsx";
+import LazyImage from "../components/LazyImage.tsx";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useState } from "react";
 
 const More = () => {
   const isMobile = useIsMobile();
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        duration: 0.4,
-        staggerChildren: 0.1,
+        duration: 0.3,
+        staggerChildren: 0.05,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
+        duration: 0.4,
         ease: "easeOut" as const,
       },
     },
   };
 
   const storyVariants = {
-    hidden: { opacity: 0, scale: 0.9, y: 20 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
-      scale: 1,
       y: 0,
       transition: {
-        delay: 0.2,
-        duration: 0.8,
+        delay: 0.1,
+        duration: 0.5,
         ease: "easeOut" as const,
       },
     },
@@ -50,60 +51,44 @@ const More = () => {
   const GalleryContent = () => (
     <div className="space-y-4">
       <h2 className="font-display text-xl font-semibold text-primary">Gallery</h2>
-      <div className="grid grid-cols-4 gap-1">
-        {/* 1Transit folder images - sample with ProgressiveImage */}
-        <ProgressiveImage 
+      <div className="grid grid-cols-2 gap-2">
+        {/* Only 6 preview images for performance */}
+        <LazyImage 
           src="/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.24.jpeg" 
           alt="Transit area" 
           className="rounded" 
-          aspectRatio="square"
+          aspectRatio="video"
         />
-        <img src="/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.25 (1).jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
-        <img src="/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.25 (2).jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
-        <img src="/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.25.jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
-        <img src="/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.26 (1).jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
-        <img src="/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.26 (2).jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
-        <img src="/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.26.jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
-        <img src="/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.27 (1).jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
-        <img src="/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.27 (2).jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
-        <img src="/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.27 (3).jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
-        <img src="/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.27.jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
-        <img src="/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.28 (1).jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
-        <img src="/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.28.jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
-        <img src="/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.29.jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
-        
-        {/* Cummunal folder images */}
-        <img src="/assets/Cummunal/GOOSE-70.JPG" alt="Common area" className="w-full h-8 object-cover rounded" />
-        <img src="/assets/Cummunal/GOOSE-71.JPG" alt="Common area" className="w-full h-8 object-cover rounded" />
-        <img src="/assets/Cummunal/GOOSE-81.JPG" alt="Common area" className="w-full h-8 object-cover rounded" />
-        <img src="/assets/Cummunal/GOOSE-89.JPG" alt="Common area" className="w-full h-8 object-cover rounded" />
-        <img src="/assets/Cummunal/GOOSE-90.JPG" alt="Common area" className="w-full h-8 object-cover rounded" />
-        <img src="/assets/Cummunal/GOOSE-92.JPG" alt="Common area" className="w-full h-8 object-cover rounded" />
-        <img src="/assets/Cummunal/WhatsApp Image 2026-03-11 at 14.06.19.jpeg" alt="Common area" className="w-full h-8 object-cover rounded" />
-        <img src="/assets/Cummunal/WhatsApp Image 2026-03-11 at 14.06.20 (3).jpeg" alt="Common area" className="w-full h-8 object-cover rounded" />
-        <img src="/assets/Cummunal/image (2).jpeg" alt="Common area" className="w-full h-8 object-cover rounded" />
-        
-        {/* Lodge Interior images from various folders */}
-        <img src="/assets/3Suite/GOOSE-100.JPG" alt="Lodge interior" className="w-full h-8 object-cover rounded" />
-        <img src="/assets/3Suite/GOOSE-105.JPG" alt="Lodge room" className="w-full h-8 object-cover rounded" />
-        <img src="/assets/rooms/GOOSE-106.JPG" alt="Lodge accommodation" className="w-full h-8 object-cover rounded" />
-        <img src="/assets/rooms/GOOSE-108.JPG" alt="Lodge facility" className="w-full h-8 object-cover rounded" />
-        <img src="/assets/rooms/GOOSE-110.JPG" alt="Lodge view" className="w-full h-8 object-cover rounded" />
-        <img src="/assets/2Studio/GOOSE-118.JPG" alt="Lodge exterior" className="w-full h-8 object-cover rounded" />
-        <img src="/assets/rooms/GOOSE-73.JPG" alt="Lodge interior" className="w-full h-8 object-cover rounded" />
-        <img src="/assets/2Studio/GOOSE-74.JPG" alt="Lodge room" className="w-full h-8 object-cover rounded" />
-        <img src="/assets/rooms/GOOSE-77.JPG" alt="Lodge facility" className="w-full h-8 object-cover rounded" />
-        <img src="/assets/rooms/GOOSE-86.JPG" alt="Lodge view" className="w-full h-8 object-cover rounded" />
-        
-        {/* Outside folder images */}
-        <img src="/assets/outside/GOOSE-101.JPG" alt="Lodge surroundings" className="w-full h-8 object-cover rounded" />
-        <img src="/assets/outside/GOOSE-120.JPG" alt="Lodge exterior" className="w-full h-8 object-cover rounded" />
-        <img src="/assets/outside/GOOSE-5.JPG" alt="Lodge surroundings" className="w-full h-8 object-cover rounded" />
-        <img src="/assets/outside/GOOSE-8.JPG" alt="Lodge exterior" className="w-full h-8 object-cover rounded" />
-        <img src="/assets/outside/GOOSE-85.JPG" alt="Lodge surroundings" className="w-full h-8 object-cover rounded" />
-        <img src="/assets/outside/WhatsApp Image 2026-03-11 at 14.06.20 (1).jpeg" alt="Lodge exterior" className="w-full h-8 object-cover rounded" />
-        <img src="/assets/outside/WhatsApp Image 2026-03-11 at 14.06.21.jpeg" alt="Lodge surroundings" className="w-full h-8 object-cover rounded" />
-        <img src="/assets/outside/WhatsApp Image 2026-03-11 at 14.06.28 (3).jpeg" alt="Lodge exterior" className="w-full h-8 object-cover rounded" />
+        <LazyImage 
+          src="/assets/Cummunal/GOOSE-70.JPG" 
+          alt="Common area" 
+          className="rounded" 
+          aspectRatio="video"
+        />
+        <LazyImage 
+          src="/assets/3Suite/GOOSE-100.JPG" 
+          alt="Lodge interior" 
+          className="rounded" 
+          aspectRatio="video"
+        />
+        <LazyImage 
+          src="/assets/rooms/GOOSE-106.JPG" 
+          alt="Lodge accommodation" 
+          className="rounded" 
+          aspectRatio="video"
+        />
+        <LazyImage 
+          src="/assets/outside/GOOSE-101.JPG" 
+          alt="Lodge surroundings" 
+          className="rounded" 
+          aspectRatio="video"
+        />
+        <LazyImage 
+          src="/assets/2Studio/GOOSE-118.JPG" 
+          alt="Lodge exterior" 
+          className="rounded" 
+          aspectRatio="video"
+        />
       </div>
       <div className="pt-2 border-t border-border/30">
         <p className="text-xs text-muted-foreground text-center">Click to view full gallery</p>
@@ -111,28 +96,59 @@ const More = () => {
     </div>
   );
 
-  const AboutContent = () => (
-    <div className="space-y-4 p-4">
-      <h2 className="font-display text-xl font-bold text-primary">Our Story</h2>
-      <div className="space-y-4 text-muted-foreground">
-        <h3 className="font-display text-lg font-semibold text-foreground leading-relaxed">
-          20 Years of Heritage. Reimagined.
-        </h3>
-        
-        <p className="leading-relaxed text-sm">
-          For two decades, Footprints Lodge has been a sanctuary in the heart of Kempton Park. But we believe that true hospitality requires moving with the times. In 2026, we undertook a radical transformation—moving away from our rustic roots toward a sleek, tech-forward aesthetic.
-        </p>
-        
-        <p className="leading-relaxed text-sm">
-          What began as a necessary repair to a 50-year-old pipe became a complete architectural rebirth. We stripped the lodge to its original shell to build something smarter and more sustainable. We've replaced bulky, dated interiors with minimalist steel and "upcycled" sleeper wood salvaged right here from the property.
-        </p>
-        
-        <p className="leading-relaxed text-sm">
-          Our evolution isn't just aesthetic; it's mechanical. We've implemented a "Continuous Maintenance" protocol—including a 6-year mattress replacement cycle—and cut our energy footprint by 40% through solar tech and recycled heat systems. We've traded the old for the optimized, ensuring that while our look is new, our commitment to the community remains as solid as the stone foundations we were built on.
-        </p>
+  const AboutContent = () => {
+    const fullText = "For over two decades, Footprints Lodge has provided practical, reliable accommodation in Kempton Park—ideal for business travellers and short stopovers. Our location offers easy access to the airport, major routes, and a wide range of nearby restaurants and shopping centres.\n\nIn 2026, the lodge underwent a complete renovation. What started as a repair project became a full rebuild, transforming the space into a clean, modern, and efficient environment. The design is intentionally minimal—focused on comfort, functionality, and a straightforward stay without unnecessary extras.\n\nSustainability and maintenance are part of how we operate. The upgrade included the use of upcycled sleeper wood, reduced energy systems, and solar-supported infrastructure, lowering our energy footprint by 40%. A continuous maintenance approach ensures the property remains in good condition, including a structured 6-year mattress replacement cycle for consistent guest comfort.\n\nFootprints Lodge is well suited to on-the-move professionals and skilled tradespeople, as well as travellers needing a convenient, well-located place to stay. It's not about luxury—it's about a clean, efficient space that meets your needs and keeps things simple.";
+
+    return (
+      <div className="space-y-4 p-4 h-full flex flex-col">
+        <h2 className="font-display text-xl font-bold text-primary">About Footprints Lodge</h2>
+        <div className="flex-1 text-muted-foreground relative">
+          <div className={`leading-relaxed text-sm ${!isExpanded ? 'overflow-hidden' : ''}`}>
+            <div className={!isExpanded ? 'max-h-[180px]' : ''}>
+              {fullText.split('\n').map((paragraph, index) => (
+                <p key={index} className="mb-3 last:mb-0">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+          </div>
+          
+          <AnimatePresence>
+            {!isExpanded && (
+              <motion.div 
+                className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background via-background/90 to-transparent pt-4 pb-1"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                <button
+                  onClick={() => setIsExpanded(true)}
+                  className="inline-flex items-center gap-1 text-primary hover:text-primary/80 transition-colors text-sm font-medium"
+                >
+                  more
+                  <ChevronDown size={16} className="transition-transform duration-200" />
+                </button>
+              </motion.div>
+            )}
+          </AnimatePresence>
+          
+          {isExpanded && (
+            <motion.button
+              onClick={() => setIsExpanded(false)}
+              className="inline-flex items-center gap-1 text-primary hover:text-primary/80 transition-colors text-sm font-medium mt-2"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.2, delay: 0.1 }}
+            >
+              less
+              <ChevronDown size={16} className="rotate-180 transition-transform duration-200" />
+            </motion.button>
+          )}
+        </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   const LocationContent = () => (
     <div className="space-y-4 p-4">
@@ -343,7 +359,7 @@ const More = () => {
           {/* Gallery - Top Left */}
           <motion.div
             variants={itemVariants}
-            whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+            whileHover={{ opacity: 0.9, transition: { duration: 0.2 } }}
             className="row-span-1"
           >
             <Link
@@ -354,60 +370,44 @@ const More = () => {
                 Gallery
               </h2>
               <div className="flex-grow overflow-y-auto scrollbar-hide">
-                <div className="grid grid-cols-4 gap-1">
-                {/* 1Transit folder images - sample with ProgressiveImage */}
-                <ProgressiveImage 
+                <div className="grid grid-cols-2 gap-2">
+                {/* Only 6 preview images for performance */}
+                <LazyImage 
                   src="/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.24.jpeg" 
                   alt="Transit area" 
                   className="rounded" 
-                  aspectRatio="square"
+                  aspectRatio="video"
                 />
-                <img src="/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.25 (1).jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
-                <img src="/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.25 (2).jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
-                <img src="/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.25.jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
-                <img src="/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.26 (1).jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
-                <img src="/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.26 (2).jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
-                <img src="/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.26.jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
-                <img src="/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.27 (1).jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
-                <img src="/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.27 (2).jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
-                <img src="/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.27 (3).jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
-                <img src="/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.27.jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
-                <img src="/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.28 (1).jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
-                <img src="/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.28.jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
-                <img src="/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.29.jpeg" alt="Transit area" className="w-full h-8 object-cover rounded" />
-                
-                {/* Cummunal folder images */}
-                <img src="/assets/Cummunal/GOOSE-70.JPG" alt="Common area" className="w-full h-8 object-cover rounded" />
-                <img src="/assets/Cummunal/GOOSE-71.JPG" alt="Common area" className="w-full h-8 object-cover rounded" />
-                <img src="/assets/Cummunal/GOOSE-81.JPG" alt="Common area" className="w-full h-8 object-cover rounded" />
-                <img src="/assets/Cummunal/GOOSE-89.JPG" alt="Common area" className="w-full h-8 object-cover rounded" />
-                <img src="/assets/Cummunal/GOOSE-90.JPG" alt="Common area" className="w-full h-8 object-cover rounded" />
-                <img src="/assets/Cummunal/GOOSE-92.JPG" alt="Common area" className="w-full h-8 object-cover rounded" />
-                <img src="/assets/Cummunal/WhatsApp Image 2026-03-11 at 14.06.19.jpeg" alt="Common area" className="w-full h-8 object-cover rounded" />
-                <img src="/assets/Cummunal/WhatsApp Image 2026-03-11 at 14.06.20 (3).jpeg" alt="Common area" className="w-full h-8 object-cover rounded" />
-                <img src="/assets/Cummunal/image (2).jpeg" alt="Common area" className="w-full h-8 object-cover rounded" />
-                
-                {/* Lodge Interior images from various folders */}
-                <img src="/assets/3Suite/GOOSE-100.JPG" alt="Lodge interior" className="w-full h-8 object-cover rounded" />
-                <img src="/assets/3Suite/GOOSE-105.JPG" alt="Lodge room" className="w-full h-8 object-cover rounded" />
-                <img src="/assets/rooms/GOOSE-106.JPG" alt="Lodge accommodation" className="w-full h-8 object-cover rounded" />
-                <img src="/assets/rooms/GOOSE-108.JPG" alt="Lodge facility" className="w-full h-8 object-cover rounded" />
-                <img src="/assets/rooms/GOOSE-110.JPG" alt="Lodge view" className="w-full h-8 object-cover rounded" />
-                <img src="/assets/2Studio/GOOSE-118.JPG" alt="Lodge exterior" className="w-full h-8 object-cover rounded" />
-                <img src="/assets/rooms/GOOSE-73.JPG" alt="Lodge interior" className="w-full h-8 object-cover rounded" />
-                <img src="/assets/2Studio/GOOSE-74.JPG" alt="Lodge room" className="w-full h-8 object-cover rounded" />
-                <img src="/assets/rooms/GOOSE-77.JPG" alt="Lodge facility" className="w-full h-8 object-cover rounded" />
-                <img src="/assets/rooms/GOOSE-86.JPG" alt="Lodge view" className="w-full h-8 object-cover rounded" />
-                
-                {/* Outside folder images */}
-                <img src="/assets/outside/GOOSE-101.JPG" alt="Lodge surroundings" className="w-full h-8 object-cover rounded" />
-                <img src="/assets/outside/GOOSE-120.JPG" alt="Lodge exterior" className="w-full h-8 object-cover rounded" />
-                <img src="/assets/outside/GOOSE-5.JPG" alt="Lodge surroundings" className="w-full h-8 object-cover rounded" />
-                <img src="/assets/outside/GOOSE-8.JPG" alt="Lodge exterior" className="w-full h-8 object-cover rounded" />
-                <img src="/assets/outside/GOOSE-85.JPG" alt="Lodge surroundings" className="w-full h-8 object-cover rounded" />
-                <img src="/assets/outside/WhatsApp Image 2026-03-11 at 14.06.20 (1).jpeg" alt="Lodge exterior" className="w-full h-8 object-cover rounded" />
-                <img src="/assets/outside/WhatsApp Image 2026-03-11 at 14.06.21.jpeg" alt="Lodge surroundings" className="w-full h-8 object-cover rounded" />
-                <img src="/assets/outside/WhatsApp Image 2026-03-11 at 14.06.28 (3).jpeg" alt="Lodge exterior" className="w-full h-8 object-cover rounded" />
+                <LazyImage 
+                  src="/assets/Cummunal/GOOSE-70.JPG" 
+                  alt="Common area" 
+                  className="rounded" 
+                  aspectRatio="video"
+                />
+                <LazyImage 
+                  src="/assets/3Suite/GOOSE-100.JPG" 
+                  alt="Lodge interior" 
+                  className="rounded" 
+                  aspectRatio="video"
+                />
+                <LazyImage 
+                  src="/assets/rooms/GOOSE-106.JPG" 
+                  alt="Lodge accommodation" 
+                  className="rounded" 
+                  aspectRatio="video"
+                />
+                <LazyImage 
+                  src="/assets/outside/GOOSE-101.JPG" 
+                  alt="Lodge surroundings" 
+                  className="rounded" 
+                  aspectRatio="video"
+                />
+                <LazyImage 
+                  src="/assets/2Studio/GOOSE-118.JPG" 
+                  alt="Lodge exterior" 
+                  className="rounded" 
+                  aspectRatio="video"
+                />
                 </div>
               </div>
               <div className="mt-3 pt-2 border-t border-border/30">
@@ -419,32 +419,68 @@ const More = () => {
           {/* Our Story - Center Column */}
           <motion.div
             variants={storyVariants}
-            whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+            whileHover={{ opacity: 0.95, transition: { duration: 0.2 } }}
             className="row-span-2"
           >
-            <div className="h-full p-8 rounded-xl border border-amber-100/50 bg-gradient-to-br from-amber-50/30 to-emerald-50/20 shadow-sm hover:shadow-md transition-shadow duration-300">
+            <div className="h-full p-8 rounded-xl border border-amber-100/50 bg-gradient-to-br from-amber-50/30 to-emerald-50/20 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col">
               <div className="flex items-center gap-3 mb-6">
-                                <h2 className="font-display text-2xl md:text-3xl font-bold text-primary">
-                  Our Story
+                <h2 className="font-display text-2xl md:text-3xl font-bold text-primary">
+                  About Footprints Lodge
                 </h2>
               </div>
               
-              <div className="space-y-4 text-muted-foreground">
-                <h3 className="font-display text-xl font-semibold text-foreground leading-relaxed">
-                  20 Years of Heritage. Reimagined.
-                </h3>
+              <div className="flex-1 text-muted-foreground relative">
+                <div className={`leading-relaxed ${!isExpanded ? 'overflow-hidden' : ''}`}>
+                  <div className={!isExpanded ? 'max-h-[600px] relative' : ''}>
+                    <>
+                      <p className="mb-3">
+                        For over two decades, Footprints Lodge has provided practical, reliable accommodation in Kempton Park—ideal for business travellers and short stopovers. Our location offers easy access to the airport, major routes, and a wide range of nearby restaurants and shopping centres.
+                      </p>
+                      <p className="mb-3">
+                        In 2026, the lodge underwent a complete renovation. What started as a repair project became a full rebuild, transforming the space into a clean, modern, and efficient environment. The design is intentionally minimal—focused on comfort, functionality, and a straightforward stay without unnecessary extras.
+                      </p>
+                      <p className="mb-3">
+                        Sustainability and maintenance are part of how we operate. The upgrade included the use of upcycled sleeper wood, reduced energy systems, and solar-supported infrastructure, lowering our energy footprint by 40%. A continuous maintenance approach ensures the property remains in good condition, including a structured 6-year mattress replacement cycle for consistent guest comfort.
+                      </p>
+                      <p className="mb-0">
+                        Footprints Lodge is well suited to on-the-move professionals and skilled tradespeople, as well as travellers needing a convenient, well-located place to stay. It's not about luxury—it's about a clean, efficient space that meets your needs and keeps things simple.
+                      </p>
+                    </>
+                  </div>
+                </div>
                 
-                <p className="leading-relaxed">
-                  For two decades, Footprints Lodge has been a sanctuary in the heart of Kempton Park. But we believe that true hospitality requires moving with the times. In 2026, we undertook a radical transformation—moving away from our rustic roots toward a sleek, tech-forward aesthetic.
-                </p>
+                <AnimatePresence>
+                  {!isExpanded && (
+                    <motion.div 
+                      className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-amber-50/30 via-amber-50/20 to-transparent pt-4 pb-1"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <button
+                        onClick={() => setIsExpanded(true)}
+                        className="inline-flex items-center gap-1 text-primary hover:text-primary/80 transition-colors font-medium"
+                      >
+                        more
+                        <ChevronDown size={16} className="transition-transform duration-200" />
+                      </button>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
                 
-                <p className="leading-relaxed">
-                  What began as a necessary repair to a 50-year-old pipe became a complete architectural rebirth. We stripped the lodge to its original shell to build something smarter and more sustainable. We've replaced bulky, dated interiors with minimalist steel and "upcycled" sleeper wood salvaged right here from the property.
-                </p>
-                
-                <p className="leading-relaxed">
-                  Our evolution isn't just aesthetic; it's mechanical. We've implemented a "Continuous Maintenance" protocol—including a 6-year mattress replacement cycle—and cut our energy footprint by 40% through solar tech and recycled heat systems. We've traded the old for the optimized, ensuring that while our look is new, our commitment to the community remains as solid as the stone foundations we were built on.
-                </p>
+                {isExpanded && (
+                  <motion.button
+                    onClick={() => setIsExpanded(false)}
+                    className="inline-flex items-center gap-1 text-primary hover:text-primary/80 transition-colors font-medium mt-2"
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.2, delay: 0.1 }}
+                  >
+                    less
+                    <ChevronDown size={16} className="rotate-180 transition-transform duration-200" />
+                  </motion.button>
+                )}
               </div>
             </div>
           </motion.div>
@@ -452,7 +488,7 @@ const More = () => {
           {/* Location - Top Right */}
           <motion.div
             variants={itemVariants}
-            whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+            whileHover={{ opacity: 0.9, transition: { duration: 0.2 } }}
             className="row-span-1"
           >
             <Link
@@ -509,7 +545,7 @@ const More = () => {
           {/* FAQ - Bottom Left */}
           <motion.div
             variants={itemVariants}
-            whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+            whileHover={{ opacity: 0.9, transition: { duration: 0.2 } }}
             className="row-span-1"
           >
             <Link
@@ -543,7 +579,7 @@ const More = () => {
           {/* Contact - Bottom Right */}
           <motion.div
             variants={itemVariants}
-            whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+            whileHover={{ opacity: 0.9, transition: { duration: 0.2 } }}
             className="row-span-1"
           >
             <Link
