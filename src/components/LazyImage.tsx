@@ -82,6 +82,24 @@ const LazyImage = ({
     };
   }, [src, isInView, onLoad, onError]);
 
+  // Add immediate load for priority images
+  useEffect(() => {
+    if (priority && src && !isLoaded) {
+      const img = new Image();
+      img.src = src;
+      
+      img.onload = () => {
+        setIsLoaded(true);
+        onLoad?.();
+      };
+
+      img.onerror = () => {
+        setError(true);
+        onError?.();
+      };
+    }
+  }, [priority, src, isLoaded, onLoad, onError]);
+
   if (error) {
     return (
       <div className={cn(

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery Debug</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .gallery-item {
+            aspect-ratio: 1;
+            overflow: hidden;
+            border-radius: 8px;
+            cursor: pointer;
+            position: relative;
+            background: #ddd;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        .gallery-item:hover {
+            border-color: #007bff;
+            transform: scale(1.05);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .debug-info {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 2px 5px;
+            font-size: 10px;
+            border-radius: 3px;
+        }
+        .error {
+            background: #ff4444;
+            color: white;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gallery Debug Test</h1>
+    <p>Click on any image to test if it's selectable. Check console for errors.</p>
+    
+    <div id="errors"></div>
+    
+    <div class="gallery" id="gallery"></div>
+
+    <script>
+        // Test images from the first category (Quickstay King)
+        const testImages = [
+            "/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.24.jpeg",
+            "/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.25 (1).jpeg",
+            "/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.25 (2).jpeg",
+            "/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.25.jpeg",
+            "/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.26 (1).jpeg",
+            "/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.26 (2).jpeg",
+            "/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.26.jpeg",
+            "/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.27 (1).jpeg"
+        ];
+
+        const gallery = document.getElementById('gallery');
+        const errors = document.getElementById('errors');
+        
+        testImages.forEach((src, index) => {
+            const item = document.createElement('div');
+            item.className = 'gallery-item';
+            item.onclick = () => {
+                console.log(`Clicked image ${index + 1}: ${src}`);
+                alert(`Image ${index + 1} clicked successfully!`);
+            };
+            
+            const img = document.createElement('img');
+            img.src = src;
+            img.alt = `Test image ${index + 1}`;
+            
+            img.onload = () => {
+                console.log(`Image ${index + 1} loaded successfully`);
+            };
+            
+            img.onerror = () => {
+                console.error(`Image ${index + 1} failed to load: ${src}`);
+                const error = document.createElement('div');
+                error.className = 'error';
+                error.textContent = `Image ${index + 1} failed to load: ${src}`;
+                errors.appendChild(error);
+            };
+            
+            const debug = document.createElement('div');
+            debug.className = 'debug-info';
+            debug.textContent = `#${index + 1}`;
+            
+            item.appendChild(img);
+            item.appendChild(debug);
+            gallery.appendChild(item);
+        });
+        
+        // Log any click events that don't work
+        document.addEventListener('click', (e) => {
+            if (e.target.closest('.gallery-item')) {
+                console.log('Gallery item clicked:', e.target.closest('.gallery-item'));
+            }
+        });
+    </script>
+</body>
+</html>

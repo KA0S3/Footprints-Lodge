@@ -21,7 +21,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const [scrolled, setScrolled] = useState(false);
   
   // Pages where the Book Now button should be hidden
-  const hideBookButton = ['/book', '/rooms', '/studio', '/suite', '/family', '/another-stay'].includes(location.pathname);
+  const hideBookButton = ['/book', '/rooms', '/studio', '/suite', '/family'].includes(location.pathname);
   useEffect(() => {
     const handleScroll = () => {
       const offset = window.scrollY;
@@ -81,7 +81,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             <span className="font-display text-sm">Footprints Lodge</span>
             <div className="flex items-center gap-4 text-xs text-background/50">
               <a href="tel:+27729859725" className="hover:text-background transition-colors">+27 72 985 9725</a>
-              <a href="mailto:hello@footprintslodge.co.za" className="hover:text-background transition-colors">hello@footprintslodge.co.za</a>
+              <a href="mailto:info@afrifoot.co.za" className="hover:text-background transition-colors">info@afrifoot.co.za</a>
               <span>Kempton Park, Gauteng</span>
             </div>
             <span className="text-xs text-background/30">&copy; {new Date().getFullYear()}</span>

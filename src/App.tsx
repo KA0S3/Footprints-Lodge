@@ -18,7 +18,6 @@ import Rooms from "./pages/Rooms";
 import Studio from "./pages/Studio";
 import Suite from "./pages/Suite";
 import Family from "./pages/Family";
-import AnotherStay from "./pages/AnotherStay";
 import Flat from "./pages/Flat";
 import Conference from "./pages/Conference";
 import Lounge from "./pages/Lounge";
@@ -48,7 +47,6 @@ const App = () => (
                 <Route path="/conference" element={<Conference />} />
                 <Route path="/lounge" element={<Lounge />} />
                 <Route path="/gallery" element={<Gallery />} />
-                <Route path="/another-stay" element={<AnotherStay />} />
                 <Route path="/how-it-works" element={<HowItWorks />} />
                 <Route path="/location" element={<Location />} />
                 <Route path="/faq" element={<FAQ />} />

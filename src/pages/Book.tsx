@@ -16,44 +16,44 @@ const Book = () => {
 
   // External booking links mapping
   const bookingLinks = {
-    "quick-stay": "https://book.nightsbridge.com/11584?bbrtid=22",
-    "compact-queen": "https://book.nightsbridge.com/11584?bbrtid=20",
+    "quick-stay": "https://book.nightsbridge.com/11584?bbrtid=9",
+    "compact-queen": "https://book.nightsbridge.com/11584?bbrtid=1",
     "comfy-king-twin": "https://book.nightsbridge.com/11584?bbrtid=3"
   };
 
   const featuredRooms = [
     {
       id: "quick-stay",
-      title: "Quick Stay",
-      description: "A compact, minimalist guest room perfect for short stays. Features modern finishes, a practical design, a dedicated workspace, and a private ground-floor entrance.",
-      beds: "Studio • 20m² • Sleeps 1-2 • Compact design • Workspace • Private entrance",
-      image: "/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.24.jpeg",
+      title: "QUICKSTAY QUEEN",
+      description: "A basic 22m² queen room located upstairs, featuring essential amenities for a comfortable stay. Perfect for business travelers seeking practical accommodation with modern finishes.",
+      beds: "Basic • 22m² • Sleeps 1-2 • Queen Bed • Upstairs location • Essential amenities",
+      image: "/assets/2Studio/GOOSE-74.JPG",
       price: "R800",
-      size: "20m²",
+      size: "22m²",
       occupancy: "2 Adults",
-      amenities: ["Ceiling fan", "Desk", "Converters/Voltage adaptors", "Shower only", "Towels"]
+      amenities: ["Ceiling fan", "Desk", "DSTV/Satellite TV", "Safe", "Wi-Fi", "Non-smoking", "Shower only", "No tea/coffee in-room"]
     },
     {
       id: "compact-queen", 
-      title: "Compact Queen",
-      description: "A minimalistic, standard queen room featuring white linen and a tranquil atmosphere. Designed for solo travelers or couples who prioritize a clean, functional space.",
-      beds: "Standard • 22m² • Sleeps 2 • Queen Bed • White linen • Tranquil atmosphere",
-      image: "/assets/2Studio/GOOSE-74.JPG",
-      price: "R950",
-      size: "22m²",
+      title: "QUICKSTAY KING",
+      description: "A comfortable 20m² studio with private ground floor entrance. Features king or twin bed configuration with wheelchair-friendly access and modern amenities.",
+      beds: "Comfort Studio • 20m² • Sleeps 1-2 • King or Twin beds • Ground floor entrance • Wheelchair friendly",
+      image: "/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.24.jpeg",
+      price: "R900",
+      size: "20m²",
       occupancy: "2 Adults",
-      amenities: ["Queen Bed", "DSTV/Satellite TV", "Non-smoking", "Safe", "Shower only"]
+      amenities: ["Ceiling fan", "Desk", "Wi-Fi", "Converters/Voltage adaptors", "Wheelchair friendly", "Non-smoking", "Shower only", "No tea/coffee in-room"]
     },
     {
       id: "comfy-king-twin",
-      title: "Comfy King / Twin", 
-      description: "A spacious, business-class room offering more room than a standard stay. Includes a versatile King or Twin bed configuration, comfortable seating for relaxation, and air-conditioning.",
-      beds: "Business • 30m² • Sleeps 2 • King or Twin beds • Sitting area • Premium environment",
-      image: "/assets/3Suite/GOOSE-100.JPG",
-      price: "R1200",
+      title: "COMFY KING", 
+      description: "A spacious 30m² business king room offering premium comfort with air-conditioning, sitting area, and full tea/coffee facilities. Available in king or twin configuration.",
+      beds: "Business King • 30m² • Sleeps 2 • King or Twin beds • Sitting area • Premium amenities",
+      image: "/assets/rooms/GOOSE-108.JPG",
+      price: "R1000",
       size: "30m²",
       occupancy: "2 Adults",
-      amenities: ["Air-con", "Sitting area", "Coffee/Tea facilities", "Desk", "Hairdryer"]
+      amenities: ["Air-conditioning", "Ceiling fan", "Sitting area", "Desk", "DSTV/Satellite TV", "Safe", "Wi-Fi", "Non-smoking", "Full tea/coffee facilities", "Shower only"]
     },
   ];
 
@@ -153,10 +153,10 @@ const Book = () => {
           >
             <Button
               variant="outline"
-              onClick={() => navigate("/another-stay")}
+              onClick={() => navigate("/contact")}
               className="gap-2 px-4 py-2 text-xs font-medium bg-black text-white border-black hover:bg-gray-800 hover:border-gray-800 transition-all duration-200 h-8"
             >
-              More ways to stay
+              For larger groups and events
               <ArrowRight size={14} />
             </Button>
           </motion.div>
@@ -300,11 +300,11 @@ const Book = () => {
 
                     {/* Offset White Tab - Asymmetrically positioned to bottom-right */}
                     <motion.div 
-                      className="absolute bg-white p-4 shadow-2xl flex flex-col justify-between"
+                      className={`absolute bg-white shadow-2xl flex flex-col justify-between ${expandedCard === room.id ? "px-0 pt-4 pb-4" : "p-4"}`}
                       style={{
                         bottom: "-20px",
-                        right: "-20px",
-                        width: "200px",
+                        right: expandedCard === room.id ? "-20px" : "-40px",
+                        width: expandedCard === room.id ? "300px" : "200px",
                         height: expandedCard === room.id ? "calc(100% + 40px)" : "160px",
                         borderRadius: "8px",
                         transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
@@ -313,16 +313,36 @@ const Book = () => {
                       animate={{ y: 0, opacity: 1 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <div className={`space-y-${expandedCard === room.id ? "3" : "1"} flex-1 flex flex-col justify-between`}>
+                      {/* Text Content with Padding */}
+                      <div className={`space-y-${expandedCard === room.id ? "3" : "1"} flex-1 flex flex-col justify-between ${expandedCard === room.id ? "px-4" : ""}`}>
                         {/* Room Title - Dark Serif */}
-                        <div className={`flex items-start justify-between gap-2 ${expandedCard === room.id ? "mt-4" : ""}`}>
-                          <h3 className={`font-serif font-bold text-gray-900 leading-tight flex-1 ${expandedCard === room.id ? "text-xl" : "text-base"}`}>
-                            {room.title}
+                        <div className={`${expandedCard === room.id ? "mt-4" : ""}`}>
+                          <h3 className={`font-serif font-bold text-gray-900 leading-tight ${expandedCard === room.id ? "text-2xl" : "text-base"}`}>
+                            {room.title.includes('QUICKSTAY') && room.title.includes('KING') ? (
+                              <>
+                                QUICKSTAY<br />KING
+                              </>
+                            ) : room.title.includes('QUICKSTAY') && room.title.includes('QUEEN') ? (
+                              <>
+                                QUICKSTAY<br />QUEEN
+                              </>
+                            ) : room.title.includes('COMFY') ? (
+                              <>
+                                COMFY<br />KING
+                              </>
+                            ) : (
+                              room.title
+                            )}
                           </h3>
+                          {expandedCard === room.id && (
+                            <div className="text-gray-700 text-xs font-sans font-medium mt-2">
+                              {room.beds}
+                            </div>
+                          )}
                         </div>
 
                         {/* Room Details - Sans-serif */}
-                        <p className={`text-gray-600 leading-relaxed font-sans ${expandedCard === room.id ? "text-xs" : "text-[9px]"}`}>
+                        <p className={`text-gray-600 leading-relaxed font-sans ${expandedCard === room.id ? "text-sm w-48" : "text-[9px]"}`}>
                           {expandedCard === room.id ? 
                             room.description : 
                             truncateDescription(room.description, 50)
@@ -335,35 +355,43 @@ const Book = () => {
                             initial={{ opacity: 0, height: 0 }}
                             animate={{ opacity: 1, height: "auto" }}
                             exit={{ opacity: 0, height: 0 }}
-                            className="space-y-2"
+                            className="space-y-0.5"
                           >
-                            <div className="text-gray-700 text-xs font-sans font-medium">
-                              {room.beds}
-                            </div>
-                            <div className="text-gray-600 text-xs font-sans">
-                              {room.amenities.slice(0, 3).map(amenity => `• ${amenity}`).join(' ')}
-                            </div>
-                            {room.amenities.length > 3 && (
-                              <div className="text-gray-600 text-xs font-sans">
-                                {room.amenities.slice(3).map(amenity => `• ${amenity}`).join(' ')}
-                              </div>
-                            )}
-                            <div className="font-semibold text-sm text-gray-900 mt-2">
-                              {room.price}<span className="text-xs font-normal text-gray-500">/night</span>
+                            <div className="grid grid-cols-2 gap-x-3 gap-y-0 text-gray-600 text-xs font-sans -mt-2">
+                              {room.amenities.map((amenity, index) => (
+                                <div key={index}>• {amenity}</div>
+                              ))}
                             </div>
                           </motion.div>
                         )}
 
                         {/* Bed Configuration - Sans-serif - hidden when expanded */}
                         {expandedCard !== room.id && (
-                          <div className="text-gray-700 text-[9px] font-sans font-medium">
+                          <div className="text-gray-700 text-[9px] font-sans font-medium -ml-1" style={{ transform: 'translateY(-8px)' }}>
                             {room.beds.split(' • ').slice(0, 3).join(' • ')}
                           </div>
                         )}
+                      </div>
 
-                        {/* Book Button - Filled color for clear call-to-action */}
+                      {/* Book Button - Outside padding, full width */}
+                      {expandedCard === room.id ? (
+                        <div className="flex justify-between items-end px-4">
+                          <div className="font-semibold text-lg text-gray-900">
+                            {room.price}<span className="text-sm font-normal text-gray-500">/night</span>
+                          </div>
+                          <Button
+                            className="inline-flex px-3 py-1 text-xs h-8 bg-black text-white hover:bg-gray-800 border-black font-bold rounded-md mr-4"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleBookClick(room);
+                            }}
+                          >
+                            Book
+                          </Button>
+                        </div>
+                      ) : (
                         <Button
-                          className={`w-full ${expandedCard === room.id ? "mt-3" : "mt-1"} text-xs h-7 bg-black text-white hover:bg-gray-800 border-black`}
+                          className="w-full text-xs h-7 bg-black text-white hover:bg-gray-800 border-black font-bold"
                           onClick={(e) => {
                             e.stopPropagation();
                             handleBookClick(room);
@@ -371,7 +399,7 @@ const Book = () => {
                         >
                           Book
                         </Button>
-                      </div>
+                      )}
                     </motion.div>
                   </motion.div>
                 </motion.div>
@@ -379,6 +407,23 @@ const Book = () => {
             </div>
           </div>
         )}
+
+        {/* Gallery Button */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mt-8 flex justify-center"
+        >
+          <Button
+            variant="outline"
+            onClick={() => navigate("/gallery")}
+            className="gap-2 px-6 py-3 text-sm font-medium bg-white text-black border-black hover:bg-gray-100 hover:border-gray-800 transition-all duration-200 shadow-md hover:shadow-lg"
+          >
+            View Photo Gallery
+            <ArrowRight size={16} />
+          </Button>
+        </motion.div>
 
         {/* Video Section */}
         <motion.div

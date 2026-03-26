@@ -10,6 +10,7 @@ import { useState } from "react";
 const More = () => {
   const isMobile = useIsMobile();
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -50,20 +51,22 @@ const More = () => {
   // Mobile Tab Content Components
   const GalleryContent = () => (
     <div className="space-y-4">
-      <h2 className="font-display text-xl font-semibold text-primary">Gallery</h2>
+      <h1 className="font-display text-3xl font-bold text-primary">Gallery</h1>
       <div className="grid grid-cols-2 gap-2">
         {/* Only 6 preview images for performance */}
         <LazyImage 
           src="/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.24.jpeg" 
-          alt="Transit area" 
+          alt="Quickstay King" 
           className="rounded" 
           aspectRatio="video"
+          priority={true}
         />
         <LazyImage 
           src="/assets/Cummunal/GOOSE-70.JPG" 
           alt="Common area" 
           className="rounded" 
           aspectRatio="video"
+          priority={true}
         />
         <LazyImage 
           src="/assets/3Suite/GOOSE-100.JPG" 
@@ -103,8 +106,8 @@ const More = () => {
       <div className="space-y-4 p-4 h-full flex flex-col">
         <h2 className="font-display text-xl font-bold text-primary">About Footprints Lodge</h2>
         <div className="flex-1 text-muted-foreground relative">
-          <div className={`leading-relaxed text-sm ${!isExpanded ? 'overflow-hidden' : ''}`}>
-            <div className={!isExpanded ? 'max-h-[180px]' : ''}>
+          <div className={`leading-relaxed text-sm ${!isExpanded ? '' : ''}`}>
+            <div className={!isExpanded ? '' : ''}>
               {fullText.split('\n').map((paragraph, index) => (
                 <p key={index} className="mb-3 last:mb-0">
                   {paragraph}
@@ -113,25 +116,6 @@ const More = () => {
             </div>
           </div>
           
-          <AnimatePresence>
-            {!isExpanded && (
-              <motion.div 
-                className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background via-background/90 to-transparent pt-4 pb-1"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.2 }}
-              >
-                <button
-                  onClick={() => setIsExpanded(true)}
-                  className="inline-flex items-center gap-1 text-primary hover:text-primary/80 transition-colors text-sm font-medium"
-                >
-                  more
-                  <ChevronDown size={16} className="transition-transform duration-200" />
-                </button>
-              </motion.div>
-            )}
-          </AnimatePresence>
           
           {isExpanded && (
             <motion.button
@@ -237,12 +221,12 @@ const More = () => {
           <p className="font-semibold text-foreground mb-2">Direct Concierge</p>
           <p className="leading-relaxed">• WhatsApp Support</p>
           <p className="text-xs text-muted-foreground pl-4">+27 72 985 9725</p>
-          <p className="leading-relaxed mt-2">• Emergency After-Hours</p>
-          <p className="text-xs text-muted-foreground pl-4">+27 72 985 9725</p>
+          <p className="leading-relaxed mt-2">• Email Support</p>
+          <p className="text-xs text-muted-foreground pl-4">info@afrifoot.co.za</p>
           <p className="leading-relaxed mt-2">• Physical Address</p>
-          <p className="text-xs text-muted-foreground pl-4">Footprints Lodge</p>
-          <p className="text-xs text-muted-foreground pl-4">Kempton Park, Gauteng</p>
-          <p className="text-xs text-muted-foreground pl-4">South Africa</p>
+          <p className="text-xs text-muted-foreground pl-4">1 Crestwood St</p>
+          <p className="text-xs text-muted-foreground pl-4">Aston Manor, Kempton Park, 1619</p>
+          <p className="text-xs text-muted-foreground pl-4">Gauteng, South Africa</p>
         </div>
       </div>
     </div>
@@ -297,7 +281,7 @@ const More = () => {
               
               <TabsContent value="about" className="mt-0">
                 <motion.div variants={storyVariants}>
-                  <div className="rounded-xl border border-amber-100/50 bg-gradient-to-br from-amber-50/30 to-emerald-50/20 shadow-sm">
+                  <div className="rounded-xl border border-gray-200 bg-white shadow-sm">
                     <AboutContent />
                   </div>
                 </motion.div>
@@ -366,23 +350,25 @@ const More = () => {
               to="/gallery"
               className="block h-full p-3 rounded-xl bg-card border border-border/50 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col"
             >
-              <h2 className="font-display text-xl font-semibold mb-2 text-primary">
+              <h1 className="font-display text-3xl font-bold mb-2 text-primary">
                 Gallery
-              </h2>
+              </h1>
               <div className="flex-grow overflow-y-auto scrollbar-hide">
                 <div className="grid grid-cols-2 gap-2">
                 {/* Only 6 preview images for performance */}
                 <LazyImage 
                   src="/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.24.jpeg" 
-                  alt="Transit area" 
+                  alt="Quickstay King" 
                   className="rounded" 
                   aspectRatio="video"
+                  priority={true}
                 />
                 <LazyImage 
                   src="/assets/Cummunal/GOOSE-70.JPG" 
                   alt="Common area" 
                   className="rounded" 
                   aspectRatio="video"
+                  priority={true}
                 />
                 <LazyImage 
                   src="/assets/3Suite/GOOSE-100.JPG" 
@@ -422,16 +408,47 @@ const More = () => {
             whileHover={{ opacity: 0.95, transition: { duration: 0.2 } }}
             className="row-span-2"
           >
-            <div className="h-full p-8 rounded-xl border border-amber-100/50 bg-gradient-to-br from-amber-50/30 to-emerald-50/20 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col">
+            <div className="h-full px-8 pt-8 pb-4 rounded-xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col relative">
               <div className="flex items-center gap-3 mb-6">
                 <h2 className="font-display text-2xl md:text-3xl font-bold text-primary">
                   About Footprints Lodge
                 </h2>
               </div>
               
-              <div className="flex-1 text-muted-foreground relative">
-                <div className={`leading-relaxed ${!isExpanded ? 'overflow-hidden' : ''}`}>
-                  <div className={!isExpanded ? 'max-h-[600px] relative' : ''}>
+              <div className="flex-1 text-muted-foreground relative overflow-hidden">
+                <div className={`leading-relaxed ${!isExpanded ? 'max-h-[600px]' : ''}`}>
+                  {!isExpanded && (
+                    <>
+                      <p className="mb-3">
+                        For over two decades, Footprints Lodge has provided practical, reliable accommodation in Kempton Park—ideal for business travellers and short stopovers. Our location offers easy access to the airport, major routes, and a wide range of nearby restaurants and shopping centres.
+                      </p>
+                      <p className="mb-3">
+                        In 2026, the lodge underwent a complete renovation. What started as a repair project became a full rebuild, transforming the space into a clean, modern, and efficient environment. The design is intentionally minimal—focused on comfort, functionality, and a straightforward stay without unnecessary extras.
+                      </p>
+                      <p className="mb-3">
+                        Sustainability and maintenance are part of how we operate. The upgrade included the use of upcycled sleeper wood, reduced energy systems, and solar-supported infrastructure, lowering our energy footprint by 40%. A continuous maintenance approach ensures the property remains in good condition, including a structured 6-year mattress replacement cycle for consistent guest comfort.
+                      </p>
+                      <p className="mb-0">
+                        Footprints Lodge is well suited to on-the-move professionals and skilled tradespeople, as well as travellers needing a convenient, well-located place to stay. It's not about luxury—it's about a clean, efficient space that meets your needs and keeps things simple.
+                      </p>
+                      {/* Fade overlay */}
+                      <div className="absolute bottom-0 left-0 right-0 h-56 bg-gradient-to-t from-white via-white/80 via-white/60 via-white/40 via-white/25 via-white/15 via-white/8 via-white/3 to-transparent pointer-events-none" />
+                      
+                      {/* More button */}
+                      {!isExpanded && (
+                        <motion.button
+                          onClick={() => setIsModalOpen(true)}
+                          className="absolute bottom-4 left-0 z-10 text-primary font-bold hover:underline transition-colors px-2"
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.3, delay: 0.2 }}
+                        >
+                          ...more
+                        </motion.button>
+                      )}
+                    </>
+                  )}
+                  {isExpanded && (
                     <>
                       <p className="mb-3">
                         For over two decades, Footprints Lodge has provided practical, reliable accommodation in Kempton Park—ideal for business travellers and short stopovers. Our location offers easy access to the airport, major routes, and a wide range of nearby restaurants and shopping centres.
@@ -446,28 +463,8 @@ const More = () => {
                         Footprints Lodge is well suited to on-the-move professionals and skilled tradespeople, as well as travellers needing a convenient, well-located place to stay. It's not about luxury—it's about a clean, efficient space that meets your needs and keeps things simple.
                       </p>
                     </>
-                  </div>
-                </div>
-                
-                <AnimatePresence>
-                  {!isExpanded && (
-                    <motion.div 
-                      className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-amber-50/30 via-amber-50/20 to-transparent pt-4 pb-1"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <button
-                        onClick={() => setIsExpanded(true)}
-                        className="inline-flex items-center gap-1 text-primary hover:text-primary/80 transition-colors font-medium"
-                      >
-                        more
-                        <ChevronDown size={16} className="transition-transform duration-200" />
-                      </button>
-                    </motion.div>
                   )}
-                </AnimatePresence>
+                </div>
                 
                 {isExpanded && (
                   <motion.button
@@ -482,7 +479,8 @@ const More = () => {
                   </motion.button>
                 )}
               </div>
-            </div>
+              
+              </div>
           </motion.div>
 
           {/* Location - Top Right */}
@@ -604,12 +602,12 @@ const More = () => {
                   <p className="font-semibold text-foreground mb-2">Direct Concierge</p>
                   <p className="leading-relaxed">• WhatsApp Support</p>
                   <p className="text-xs text-muted-foreground pl-4 mt-1">+27 72 985 9725</p>
-                  <p className="leading-relaxed mt-2">• Emergency After-Hours</p>
-                  <p className="text-xs text-muted-foreground pl-4 mt-1">+27 72 985 9725</p>
+                  <p className="leading-relaxed mt-2">• Email Support</p>
+                  <p className="text-xs text-muted-foreground pl-4 mt-1">info@afrifoot.co.za</p>
                   <p className="leading-relaxed mt-2">• Physical Address</p>
-                  <p className="text-xs text-muted-foreground pl-4 mt-1">Footprints Lodge</p>
-                  <p className="text-xs text-muted-foreground pl-4">Kempton Park, Gauteng</p>
-                  <p className="text-xs text-muted-foreground pl-4">South Africa</p>
+                  <p className="text-xs text-muted-foreground pl-4 mt-1">1 Crestwood St</p>
+                  <p className="text-xs text-muted-foreground pl-4">Aston Manor, Kempton Park, 1619</p>
+                  <p className="text-xs text-muted-foreground pl-4">Gauteng, South Africa</p>
                 </div>
               </div>
             </Link>
@@ -617,6 +615,56 @@ const More = () => {
         </motion.div>
         )}
       </main>
+      
+      {/* Fullscreen Modal */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-50 bg-background/95 backdrop-blur-sm"
+            onClick={() => setIsModalOpen(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="h-full w-full max-w-4xl mx-auto p-8 flex flex-col"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex justify-between items-center mb-8">
+                <h2 className="font-display text-3xl font-bold text-primary">About Footprints Lodge</h2>
+                <button
+                  onClick={() => setIsModalOpen(false)}
+                  className="p-2 rounded-lg hover:bg-muted transition-colors"
+                >
+                  <ChevronDown size={24} className="rotate-180" />
+                </button>
+              </div>
+              
+              <div className="flex-1 overflow-y-auto">
+                <div className="max-w-3xl mx-auto">
+                  <p className="mb-6 text-lg leading-relaxed">
+                    For over two decades, Footprints Lodge has provided practical, reliable accommodation in Kempton Park—ideal for business travellers and short stopovers. Our location offers easy access to the airport, major routes, and a wide range of nearby restaurants and shopping centres.
+                  </p>
+                  <p className="mb-6 text-lg leading-relaxed">
+                    In 2026, the lodge underwent a complete renovation. What started as a repair project became a full rebuild, transforming the space into a clean, modern, and efficient environment. The design is intentionally minimal—focused on comfort, functionality, and a straightforward stay without unnecessary extras.
+                  </p>
+                  <p className="mb-6 text-lg leading-relaxed">
+                    Sustainability and maintenance are part of how we operate. The upgrade included the use of upcycled sleeper wood, reduced energy systems, and solar-supported infrastructure, lowering our energy footprint by 40%. A continuous maintenance approach ensures the property remains in good condition, including a structured 6-year mattress replacement cycle for consistent guest comfort.
+                  </p>
+                  <p className="text-lg leading-relaxed">
+                    Footprints Lodge is well suited to on-the-move professionals and skilled tradespeople, as well as travellers needing a convenient, well-located place to stay. It's not about luxury—it's about a clean, efficient space that meets your needs and keeps things simple.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

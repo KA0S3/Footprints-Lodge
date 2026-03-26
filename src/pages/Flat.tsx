@@ -119,7 +119,7 @@ const Flat = () => {
                     Individual units available for different group sizes
                   </p>
                   <Button variant="hero" size="lg" asChild className="w-full sm:w-auto">
-                    <Link to="/another-stay">View All Units</Link>
+                    <Link to="/contact">View All Units</Link>
                   </Button>
                 </div>
               </div>

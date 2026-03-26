@@ -119,7 +119,7 @@ const Conference = () => {
                     2 Bedrooms with King/Twin configurations
                   </p>
                   <Button variant="hero" size="lg" asChild className="w-full sm:w-auto">
-                    <Link to="/another-stay">View Details</Link>
+                    <Link to="/contact">View Details</Link>
                   </Button>
                 </div>
               </div>

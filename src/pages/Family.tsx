@@ -102,7 +102,7 @@ const Family = () => {
                     Various Configurations
                   </p>
                   <Button variant="hero" size="lg" asChild className="w-full sm:w-auto">
-                    <Link to="/another-stay">View Details</Link>
+                    <Link to="/contact">View Details</Link>
                   </Button>
                 </div>
               </div>
@@ -114,7 +114,7 @@ const Family = () => {
             <div className="space-y-4">
               <h3 className="font-semibold text-lg mb-2">Family Room</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Our spacious Family Room offers various bed configurations with a much larger floor plan. Perfect for families or groups who need extra space, featuring all premium amenities including Smart TV, air conditioning, and kettle facilities.
+                Our spacious Family Rooms (Rooms 16 & 17) offer various bed configurations with a much larger floor plan. Perfect for families or groups who need extra space, featuring all premium amenities including Smart TV, air conditioning, and kettle facilities. These rooms sleep 3 or more people and are handled via direct inquiry only.
               </p>
             </div>
 

@@ -3,14 +3,16 @@ import { motion } from "framer-motion";
 import { ArrowLeft, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import ProgressiveImage from "../components/ProgressiveImage.tsx";
 
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   // Organize images by category
   const imageCategories = {
-    "Transit Areas": [
+    "Quickstay King": [
       "/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.24.jpeg",
       "/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.25 (1).jpeg",
       "/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.25 (2).jpeg",
@@ -116,14 +118,12 @@ const Gallery = () => {
         <div className="container flex items-center justify-between h-14">
           <div className="flex items-center gap-4">
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button variant="ghost" size="sm" asChild>
-                <Link to="/more" className="flex items-center gap-2">
-                  <ArrowLeft size={16} />
-                  Back to More
-                </Link>
+              <Button variant="ghost" size="sm" onClick={() => navigate(-1)} className="flex items-center gap-2">
+                <ArrowLeft size={16} />
+                Back
               </Button>
             </motion.div>
-            <h1 className="font-display text-xl font-semibold text-foreground tracking-tight">
+            <h1 className="font-display text-4xl font-bold text-foreground tracking-tight">
               Gallery
             </h1>
           </div>
@@ -170,7 +170,7 @@ const Gallery = () => {
                       className="group-hover:scale-110 transition-transform duration-300"
                       aspectRatio="square"
                     />
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 pointer-events-none" />
                   </motion.div>
                 ))}
               </div>
@@ -186,7 +186,7 @@ const Gallery = () => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center p-8"
           onClick={closeLightbox}
         >
           <motion.div
@@ -200,7 +200,7 @@ const Gallery = () => {
             <Button
               variant="ghost"
               size="icon"
-              className="absolute -top-12 right-0 text-white hover:bg-white/20"
+              className="absolute -top-12 right-0 text-white hover:bg-white/20 z-10"
               onClick={closeLightbox}
             >
               <X size={24} />
