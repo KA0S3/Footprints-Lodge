@@ -89,7 +89,7 @@ const Index = () => {
             transition={{ duration: 0.5, delay: 1 }}
             className="mt-12 text-white/70 text-sm space-y-1"
           >
-            <p>Kempton Park · R650/night · Self check-in</p>
+            <p>Kempton Park · R800/night · Self check-in</p>
             <p className="text-xs text-white/50">Designed for the modern business traveler</p>
           </motion.div>
         </div>
