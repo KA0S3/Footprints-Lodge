@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { MapPin, HelpCircle, MessageSquare, Info, BookOpen, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -11,6 +11,11 @@ const More = () => {
   const isMobile = useIsMobile();
   const [isExpanded, setIsExpanded] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Redirect mobile users to mobile-about page
+  if (isMobile) {
+    return <Navigate to="/mobile-about" replace />;
+  }
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -50,51 +55,55 @@ const More = () => {
 
   // Mobile Tab Content Components
   const GalleryContent = () => (
-    <div className="space-y-4">
+    <div className="space-y-6 p-6">
       <h1 className="font-display text-3xl font-bold text-primary">Gallery</h1>
-      <div className="grid grid-cols-2 gap-2">
+      <div className="grid grid-cols-2 gap-3">
         {/* Only 6 preview images for performance */}
         <LazyImage 
           src="/assets/1Transit/WhatsApp Image 2026-03-11 at 14.06.24.jpeg" 
           alt="Quickstay King" 
-          className="rounded" 
+          className="rounded-lg" 
           aspectRatio="video"
           priority={true}
         />
         <LazyImage 
           src="/assets/Cummunal/GOOSE-70.JPG" 
           alt="Common area" 
-          className="rounded" 
+          className="rounded-lg" 
           aspectRatio="video"
           priority={true}
         />
         <LazyImage 
           src="/assets/3Suite/GOOSE-100.JPG" 
           alt="Lodge interior" 
-          className="rounded" 
+          className="rounded-lg" 
           aspectRatio="video"
+          priority={true}
         />
         <LazyImage 
           src="/assets/rooms/GOOSE-106.JPG" 
           alt="Lodge accommodation" 
-          className="rounded" 
+          className="rounded-lg" 
           aspectRatio="video"
+          priority={true}
         />
         <LazyImage 
           src="/assets/outside/GOOSE-101.JPG" 
           alt="Lodge surroundings" 
-          className="rounded" 
+          className="rounded-lg" 
           aspectRatio="video"
+          priority={true}
         />
         <LazyImage 
           src="/assets/2Studio/GOOSE-118.JPG" 
           alt="Lodge exterior" 
-          className="rounded" 
+          className="rounded-lg" 
           aspectRatio="video"
+          priority={true}
         />
       </div>
-      <div className="pt-2 border-t border-border/30">
-        <p className="text-xs text-muted-foreground text-center">Click to view full gallery</p>
+      <div className="pt-4 border-t border-border/30">
+        <p className="text-sm text-muted-foreground text-center">View full gallery for more photos</p>
       </div>
     </div>
   );
@@ -103,48 +112,30 @@ const More = () => {
     const fullText = "For over two decades, Footprints Lodge has provided practical, reliable accommodation in Kempton Park—ideal for business travellers and short stopovers. Our location offers easy access to the airport, major routes, and a wide range of nearby restaurants and shopping centres.\n\nIn 2026, the lodge underwent a complete renovation. What started as a repair project became a full rebuild, transforming the space into a clean, modern, and efficient environment. The design is intentionally minimal—focused on comfort, functionality, and a straightforward stay without unnecessary extras.\n\nSustainability and maintenance are part of how we operate. The upgrade included the use of upcycled sleeper wood, reduced energy systems, and solar-supported infrastructure, lowering our energy footprint by 40%. A continuous maintenance approach ensures the property remains in good condition, including a structured 6-year mattress replacement cycle for consistent guest comfort.\n\nFootprints Lodge is well suited to on-the-move professionals and skilled tradespeople, as well as travellers needing a convenient, well-located place to stay. It's not about luxury—it's about a clean, efficient space that meets your needs and keeps things simple.";
 
     return (
-      <div className="space-y-4 p-4 h-full flex flex-col">
-        <h2 className="font-display text-xl font-bold text-primary">About Footprints Lodge</h2>
-        <div className="flex-1 text-muted-foreground relative">
-          <div className={`leading-relaxed text-sm ${!isExpanded ? '' : ''}`}>
-            <div className={!isExpanded ? '' : ''}>
-              {fullText.split('\n').map((paragraph, index) => (
-                <p key={index} className="mb-3 last:mb-0">
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-          </div>
-          
-          
-          {isExpanded && (
-            <motion.button
-              onClick={() => setIsExpanded(false)}
-              className="inline-flex items-center gap-1 text-primary hover:text-primary/80 transition-colors text-sm font-medium mt-2"
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.2, delay: 0.1 }}
-            >
-              less
-              <ChevronDown size={16} className="rotate-180 transition-transform duration-200" />
-            </motion.button>
-          )}
+      <div className="space-y-6 p-6">
+        <h2 className="font-display text-2xl font-bold text-primary">About Footprints Lodge</h2>
+        <div className="space-y-4 text-muted-foreground">
+          {fullText.split('\n').map((paragraph, index) => (
+            <p key={index} className="leading-relaxed text-sm">
+              {paragraph}
+            </p>
+          ))}
         </div>
       </div>
     );
   };
 
   const LocationContent = () => (
-    <div className="space-y-4 p-4">
-      <div className="flex items-center gap-3">
-        <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-          <MapPin size={20} className="text-primary" />
+    <div className="space-y-6 p-6">
+      <div className="flex items-center gap-4">
+        <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+          <MapPin size={24} className="text-primary" />
         </div>
-        <h2 className="font-display text-xl font-semibold text-primary">Location</h2>
+        <h2 className="font-display text-2xl font-semibold text-primary">Location</h2>
       </div>
       
       {/* Map Section */}
-      <div className="relative w-full h-48 bg-gray-100 rounded-lg overflow-hidden border border-border/30">
+      <div className="relative w-full h-56 bg-gray-100 rounded-xl overflow-hidden border border-border/30">
         <img
           src="/assets/MAP.png"
           alt="Footprints Lodge Location Map"
@@ -155,24 +146,24 @@ const More = () => {
       </div>
       
       {/* Nearby Landmarks */}
-      <div className="space-y-2">
-        <p className="font-semibold text-sm text-foreground">Nearby Landmarks</p>
-        <div className="space-y-2 text-sm text-muted-foreground">
-          <div className="flex justify-between items-center">
-            <span>OR Tambo International Airport</span>
-            <span className="text-primary font-medium">10 mins</span>
+      <div className="space-y-4">
+        <h3 className="font-semibold text-lg text-foreground">Nearby Landmarks</h3>
+        <div className="space-y-3 text-muted-foreground">
+          <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+            <span className="text-sm font-medium">OR Tambo International Airport</span>
+            <span className="text-primary font-semibold text-sm">10 mins</span>
           </div>
-          <div className="flex justify-between items-center">
-            <span>Rhodesfield Gautrain Station</span>
-            <span className="text-primary font-medium">8 mins</span>
+          <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+            <span className="text-sm font-medium">Rhodesfield Gautrain Station</span>
+            <span className="text-primary font-semibold text-sm">8 mins</span>
           </div>
-          <div className="flex justify-between items-center">
-            <span>Emperors Palace Casino</span>
-            <span className="text-primary font-medium">12 mins</span>
+          <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+            <span className="text-sm font-medium">Emperors Palace Casino</span>
+            <span className="text-primary font-semibold text-sm">12 mins</span>
           </div>
-          <div className="flex justify-between items-center">
-            <span>Local Shopping Hubs</span>
-            <span className="text-primary font-medium">5 mins</span>
+          <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+            <span className="text-sm font-medium">Local Shopping Hubs</span>
+            <span className="text-primary font-semibold text-sm">5 mins</span>
           </div>
         </div>
       </div>
@@ -180,53 +171,107 @@ const More = () => {
   );
 
   const FAQContent = () => (
-    <div className="space-y-4 p-4">
-      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-        <HelpCircle size={24} className="text-primary" />
+    <div className="space-y-6 p-6">
+      <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center">
+        <HelpCircle size={28} className="text-primary" />
       </div>
-      <h2 className="font-display text-xl font-semibold text-primary">FAQ</h2>
-      <p className="text-sm text-muted-foreground">
+      <h2 className="font-display text-2xl font-semibold text-primary">FAQ</h2>
+      <p className="text-base text-muted-foreground">
         Common questions answered
       </p>
-      <div className="space-y-3 text-sm text-muted-foreground">
-        <p className="leading-relaxed">• Check-in & check-out times</p>
-        <p className="leading-relaxed">• Payment methods</p>
-        <p className="leading-relaxed">• Cancellation policy</p>
-        <p className="leading-relaxed">• Amenities included</p>
-        <p className="leading-relaxed">• Eco-Friendly Initiatives</p>
-        <p className="text-xs text-muted-foreground pl-4">Solar & Water recycling systems</p>
-        <p className="leading-relaxed">• Proximity to Hubs</p>
-        <p className="text-xs text-muted-foreground pl-4">Gautrain & Airport access</p>
-        <p className="leading-relaxed">• Check-in Tech</p>
-        <p className="text-xs text-muted-foreground pl-4">Keyless entry details</p>
+      <div className="space-y-4 text-muted-foreground">
+        <div className="p-4 bg-gray-50 rounded-lg">
+          <h4 className="font-semibold text-foreground mb-2">Check-in & Check-out</h4>
+          <p className="text-sm">Flexible timing options available</p>
+        </div>
+        <div className="p-4 bg-gray-50 rounded-lg">
+          <h4 className="font-semibold text-foreground mb-2">Payment Methods</h4>
+          <p className="text-sm">Multiple payment options accepted</p>
+        </div>
+        <div className="p-4 bg-gray-50 rounded-lg">
+          <h4 className="font-semibold text-foreground mb-2">Cancellation Policy</h4>
+          <p className="text-sm">Fair cancellation terms</p>
+        </div>
+        <div className="p-4 bg-gray-50 rounded-lg">
+          <h4 className="font-semibold text-foreground mb-2">Amenities Included</h4>
+          <p className="text-sm">Essential amenities for comfortable stay</p>
+        </div>
+        <div className="p-4 bg-gray-50 rounded-lg">
+          <h4 className="font-semibold text-foreground mb-2">Eco-Friendly Initiatives</h4>
+          <p className="text-sm mb-2">Solar & Water recycling systems</p>
+          <p className="text-sm text-muted-foreground">Sustainable practices throughout</p>
+        </div>
+        <div className="p-4 bg-gray-50 rounded-lg">
+          <h4 className="font-semibold text-foreground mb-2">Proximity to Hubs</h4>
+          <p className="text-sm mb-2">Gautrain & Airport access</p>
+          <p className="text-sm text-muted-foreground">Convenient transportation links</p>
+        </div>
+        <div className="p-4 bg-gray-50 rounded-lg">
+          <h4 className="font-semibold text-foreground mb-2">Check-in Tech</h4>
+          <p className="text-sm mb-2">Keyless entry details</p>
+          <p className="text-sm text-muted-foreground">Modern self-check-in system</p>
+        </div>
       </div>
     </div>
   );
 
   const ContactContent = () => (
-    <div className="space-y-4 p-4">
-      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-        <MessageSquare size={24} className="text-primary" />
+    <div className="space-y-6 p-6">
+      <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center">
+        <MessageSquare size={28} className="text-primary" />
       </div>
-      <h2 className="font-display text-xl font-semibold text-primary">Contact</h2>
-      <p className="text-sm text-muted-foreground">
+      <h2 className="font-display text-2xl font-semibold text-primary">Contact</h2>
+      <p className="text-base text-muted-foreground">
         Get in touch with our team
       </p>
-      <div className="space-y-3 text-sm text-muted-foreground">
-        <p className="leading-relaxed">• 24/7 support available</p>
-        <p className="leading-relaxed">• Quick response guarantee</p>
-        <p className="leading-relaxed">• Multiple contact methods</p>
-        <p className="leading-relaxed">• Emergency assistance</p>
-        <div className="pt-2 mt-2 border-t border-border/30">
-          <p className="font-semibold text-foreground mb-2">Direct Concierge</p>
-          <p className="leading-relaxed">• WhatsApp Support</p>
-          <p className="text-xs text-muted-foreground pl-4">+27 72 985 9725</p>
-          <p className="leading-relaxed mt-2">• Email Support</p>
-          <p className="text-xs text-muted-foreground pl-4">info@afrifoot.co.za</p>
-          <p className="leading-relaxed mt-2">• Physical Address</p>
-          <p className="text-xs text-muted-foreground pl-4">1 Crestwood St</p>
-          <p className="text-xs text-muted-foreground pl-4">Aston Manor, Kempton Park, 1619</p>
-          <p className="text-xs text-muted-foreground pl-4">Gauteng, South Africa</p>
+      
+      <div className="space-y-4">
+        <div className="p-4 bg-gray-50 rounded-lg">
+          <h4 className="font-semibold text-foreground mb-3">Support Services</h4>
+          <div className="space-y-2 text-sm text-muted-foreground">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+              <span>24/7 support available</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+              <span>Quick response guarantee</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+              <span>Multiple contact methods</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+              <span>Emergency assistance</span>
+            </div>
+          </div>
+        </div>
+        
+        <div className="p-4 bg-gray-50 rounded-lg">
+          <h4 className="font-semibold text-foreground mb-3">Direct Concierge</h4>
+          <div className="space-y-3">
+            <div>
+              <p className="text-sm font-medium text-foreground mb-1">WhatsApp Support</p>
+              <a href="tel:+27729859725" className="text-sm text-primary hover:text-primary/80">
+                +27 72 985 9725
+              </a>
+            </div>
+            <div>
+              <p className="text-sm font-medium text-foreground mb-1">Email Support</p>
+              <a href="mailto:info@afrifoot.co.za" className="text-sm text-primary hover:text-primary/80">
+                info@afrifoot.co.za
+              </a>
+            </div>
+            <div>
+              <p className="text-sm font-medium text-foreground mb-1">Physical Address</p>
+              <p className="text-sm text-muted-foreground">
+                1 Crestwood St<br />
+                Aston Manor, Kempton Park, 1619<br />
+                Gauteng, South Africa
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -289,45 +334,33 @@ const More = () => {
               
               <TabsContent value="location" className="mt-0">
                 <motion.div variants={itemVariants}>
-                  <Link
-                    to="/location"
-                    className="block p-4 rounded-xl bg-card shadow-sm hover:shadow-md transition-all duration-300"
-                  >
+                  <div className="rounded-xl border border-gray-200 bg-white shadow-sm">
                     <LocationContent />
-                  </Link>
+                  </div>
                 </motion.div>
               </TabsContent>
               
               <TabsContent value="gallery" className="mt-0">
                 <motion.div variants={itemVariants}>
-                  <Link
-                    to="/gallery"
-                    className="block p-4 rounded-xl bg-card border border-border/50 shadow-sm hover:shadow-md transition-all duration-300"
-                  >
+                  <div className="rounded-xl border border-gray-200 bg-white shadow-sm">
                     <GalleryContent />
-                  </Link>
+                  </div>
                 </motion.div>
               </TabsContent>
               
               <TabsContent value="faq" className="mt-0">
                 <motion.div variants={itemVariants}>
-                  <Link
-                    to="/faq"
-                    className="block p-4 rounded-xl bg-card hover:border-yellow-600 transition-all duration-300 group shadow-sm hover:shadow-md"
-                  >
+                  <div className="rounded-xl border border-gray-200 bg-white shadow-sm">
                     <FAQContent />
-                  </Link>
+                  </div>
                 </motion.div>
               </TabsContent>
               
               <TabsContent value="contact" className="mt-0">
                 <motion.div variants={itemVariants}>
-                  <Link
-                    to="/contact"
-                    className="block p-4 rounded-xl bg-card hover:border-yellow-600 transition-all duration-300 group shadow-sm hover:shadow-md"
-                  >
+                  <div className="rounded-xl border border-gray-200 bg-white shadow-sm">
                     <ContactContent />
-                  </Link>
+                  </div>
                 </motion.div>
               </TabsContent>
             </Tabs>

@@ -131,16 +131,17 @@ const Book = () => {
           <div className="w-full max-w-7xl">
 
         {/* Header */}
-        <div className="flex justify-between items-start mb-12">
+        <div className={`${isMobile ? "flex flex-col space-y-4" : "flex justify-between items-start"} mb-12`}>
           <motion.div 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
+            className={isMobile ? "text-center" : ""}
           >
-            <h1 className="font-display text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent max-w-2xl ml-4 md:ml-8">
+            <h1 className={`font-display text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent ${isMobile ? "max-w-full px-4" : "max-w-2xl ml-4 md:ml-8"}`}>
               Choose Your Room
             </h1>
-            <p className="text-lg text-slate-600 max-w-2xl ml-4 md:ml-8">
+            <p className={`text-lg text-slate-600 ${isMobile ? "max-w-full px-4" : "max-w-2xl ml-4 md:ml-8"}`}>
               Select the perfect accommodation for your stay at Footprints Lodge
             </p>
           </motion.div>
@@ -149,11 +150,11 @@ const Book = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="mt-16"
+            className={isMobile ? "flex justify-center" : "mt-16"}
           >
             <Button
               variant="outline"
-              onClick={() => navigate("/contact")}
+              onClick={() => navigate(isMobile ? "/mobile-contact" : "/contact")}
               className="gap-2 px-4 py-2 text-xs font-medium bg-black text-white border-black hover:bg-gray-800 hover:border-gray-800 transition-all duration-200 h-8"
             >
               For larger groups and events
@@ -164,7 +165,7 @@ const Book = () => {
 
         {/* Three Static Cards - Different layouts for mobile and desktop */}
         {isMobile ? (
-          // Mobile Layout: Stacked vertically with fullscreen expansion
+          // Mobile Layout: Half image + half white card with fullscreen expansion
           <div className="relative w-full max-w-7xl mx-auto space-y-4 px-4" ref={cardsContainerRef}>
             {featuredRooms.map((room) => (
               <motion.div
@@ -178,90 +179,118 @@ const Book = () => {
                 <motion.div
                   className="relative rounded-2xl overflow-hidden shadow-xl bg-white"
                   style={{
-                    height: expandedCard === room.id ? "100vh" : "200px"
+                    height: expandedCard === room.id ? "auto" : "180px",
+                    minHeight: expandedCard === room.id ? "100vh" : "180px"
                   }}
                   transition={{ 
                     duration: 0.4, 
                     ease: [0.4, 0, 0.2, 1]
                   }}
                 >
-                  {/* Room Image */}
-                  <div className="relative h-full">
-                    <img 
-                      src={room.image} 
-                      alt={room.title}
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                    
-                    {/* Content Overlay */}
-                    <div className="absolute inset-0 p-4 flex flex-col justify-between text-white">
-                      {/* Header */}
-                      <div className="flex justify-between items-start">
-                        <h3 className="font-serif font-bold text-lg leading-tight">
-                          {room.title}
-                        </h3>
-                        {expandedCard === room.id && (
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setExpandedCard(null);
-                            }}
-                            className="p-2 bg-white/20 backdrop-blur-sm rounded-full"
-                          >
-                            <X size={16} className="text-white" />
-                          </button>
-                        )}
-                      </div>
-
-                      {/* Middle Content */}
-                      <div className="flex-1 flex flex-col justify-center">
-                        <p className="text-sm leading-relaxed mb-2">
-                          {expandedCard === room.id ? 
-                            room.description : 
-                            truncateDescription(room.description, 80)
-                          }
-                        </p>
-                        
-                        {expandedCard === room.id && (
-                          <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 0.2 }}
-                            className="space-y-3"
-                          >
-                            <div className="text-sm">
-                              {room.beds}
-                            </div>
-                            <div className="text-sm space-y-1">
-                              {room.amenities.map(amenity => `• ${amenity}`).join(' ')}
-                            </div>
-                            <div className="font-bold text-lg">
-                              {room.price}<span className="text-sm font-normal">/night</span>
-                            </div>
-                          </motion.div>
-                        )}
-                      </div>
-
-                      {/* Footer */}
-                      <div className="flex justify-between items-end">
-                        {expandedCard !== room.id && (
-                          <div className="text-xs opacity-80">
-                            {room.beds.split(' • ').slice(0, 2).join(' • ')}
-                          </div>
-                        )}
-                        <Button
-                          className="bg-black text-white hover:bg-gray-800 border-black text-xs px-4 py-2 h-8"
+                  {expandedCard === room.id ? (
+                    // Expanded state: Full card without internal scroll
+                    <div className="h-full flex flex-col">
+                      {/* Image Section */}
+                      <div className="relative h-64 flex-shrink-0">
+                        <img 
+                          src={room.image} 
+                          alt={room.title}
+                          className="w-full h-full object-cover"
+                        />
+                        <button
                           onClick={(e) => {
                             e.stopPropagation();
-                            handleBookClick(room);
+                            setExpandedCard(null);
                           }}
+                          className="absolute top-4 right-4 p-2 bg-white/90 backdrop-blur-sm rounded-full shadow-lg"
                         >
-                          {expandedCard === room.id ? "Book Now" : "View & Book"}
-                        </Button>
+                          <X size={16} className="text-gray-800" />
+                        </button>
+                      </div>
+                      
+                      {/* Content Section - No scroll, full height */}
+                      <div className="flex-1 bg-white p-6 overflow-visible">
+                        <div className="space-y-4">
+                          <h3 className="font-serif font-bold text-2xl text-gray-900 leading-tight">
+                            {room.title}
+                          </h3>
+                          
+                          <div className="text-gray-600 text-sm">
+                            {room.beds}
+                          </div>
+                          
+                          <p className="text-gray-700 leading-relaxed">
+                            {room.description}
+                          </p>
+                          
+                          <div className="space-y-2">
+                            <h4 className="font-semibold text-gray-900">Amenities:</h4>
+                            <div className="grid grid-cols-1 gap-1 text-sm text-gray-600">
+                              {room.amenities.map((amenity, index) => (
+                                <div key={index}>• {amenity}</div>
+                              ))}
+                            </div>
+                          </div>
+                          
+                          <div className="flex justify-between items-center pt-4 border-t border-gray-200">
+                            <div className="font-bold text-xl text-gray-900">
+                              {room.price}<span className="text-sm font-normal text-gray-500">/night</span>
+                            </div>
+                            <Button
+                              className="bg-black text-white hover:bg-gray-800 border-black px-6 py-3"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleBookClick(room);
+                              }}
+                            >
+                              Book Now
+                            </Button>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  ) : (
+                    // Collapsed state: Half image + half white card
+                    <div className="h-full flex">
+                      {/* Left Half - Image */}
+                      <div className="relative w-1/2">
+                        <img 
+                          src={room.image} 
+                          alt={room.title}
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent" />
+                      </div>
+                      
+                      {/* Right Half - White Card with Black Text */}
+                      <div className="w-1/2 bg-white p-4 flex flex-col justify-between">
+                        <div>
+                          <h3 className="font-serif font-bold text-lg text-gray-900 leading-tight mb-2">
+                            {room.title}
+                          </h3>
+                          <div className="text-xs text-gray-600 mb-2">
+                            {room.beds.split(' • ').slice(0, 2).join(' • ')}
+                          </div>
+                        </div>
+                        
+                        <div className="space-y-2">
+                          <p className="text-xs text-gray-700 leading-relaxed line-clamp-2">
+                            {truncateDescription(room.description, 60)}
+                          </p>
+                          
+                          <Button
+                            className="w-full bg-black text-white hover:bg-gray-800 border-black text-xs px-3 py-2 h-8"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleBookClick(room);
+                            }}
+                          >
+                            View & Book
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </motion.div>
               </motion.div>
             ))}
@@ -417,7 +446,7 @@ const Book = () => {
         >
           <Button
             variant="outline"
-            onClick={() => navigate("/gallery")}
+            onClick={() => navigate(isMobile ? "/mobile-gallery" : "/gallery")}
             className="gap-2 px-6 py-3 text-sm font-medium bg-white text-black border-black hover:bg-gray-100 hover:border-gray-800 transition-all duration-200 shadow-md hover:shadow-lg"
           >
             View Photo Gallery
@@ -432,19 +461,21 @@ const Book = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mt-12 flex justify-center"
         >
-          <div className="w-full max-w-4xl">
+          <div className={`w-full ${isMobile ? "max-w-full px-4" : "max-w-4xl"}`}>
             <div className="relative rounded-lg overflow-hidden shadow-xl">
-              <iframe 
-                width="100%" 
-                height="453" 
-                src="https://www.youtube.com/embed/flC9vf0vaKg?start=22&autoplay=1&mute=1" 
-                title="AFRICA FOOTPRINTS LODGE" 
-                frameBorder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                referrerPolicy="strict-origin-when-cross-origin" 
-                allowFullScreen
-                className="w-full"
-              />
+              <div className={`relative ${isMobile ? "aspect-video" : ""}`}>
+                <iframe 
+                  width="100%" 
+                  height={isMobile ? "100%" : "453"} 
+                  src="https://www.youtube.com/embed/flC9vf0vaKg?start=22&autoplay=1&mute=1" 
+                  title="AFRICA FOOTPRINTS LODGE" 
+                  frameBorder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                  referrerPolicy="strict-origin-when-cross-origin" 
+                  allowFullScreen
+                  className={`w-full ${isMobile ? "h-full absolute inset-0" : ""}`}
+                />
+              </div>
             </div>
           </div>
         </motion.div>
